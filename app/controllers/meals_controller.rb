@@ -12,7 +12,7 @@ class MealsController < ApplicationController
     
   end
 
-  def particpants_list
+  def participants_list
 
   end
 end

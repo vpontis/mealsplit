@@ -1,11 +1,11 @@
-<h1>Please list the particpants</h1>
+<h1>Please list the participants</h1>
 
 <p>Please list the email of who paid for the receipt and the emails of everyone at the meal.</p>
 
 <%= form_tag("/participants_list", method: "post") do %>
   <%= label_tag(:meal_payer_name, "Who paid?") %>
   <%= text_field_tag(:meal_payer_name) %>
-  <%= label_tag(:meal_particpant) %>
-  <%= text_field_tag(:meal_particpant) %>
+  <%= label_tag(:meal_participant) %>
+  <%= text_field_tag(:meal_participant) %>
   <%= submit_tag("Next >>") %>
 <% end %>

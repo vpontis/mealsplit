@@ -1,12 +1,12 @@
 VpontisEmzhangTscizzleProj3::Application.routes.draw do
   resources :meals do
-    resources :particpants
+    resources :participants
     resources :charges
   end
 
   match '/restaurant_choice', via: 'post', to: 'meals#restaurant_choice'
   match '/get_participants', via: 'get', to: 'meals#get_participants'
-  match '/particpants_list', via: 'post', to: 'meals#particpants_list'
+  match '/participants_list', via: 'post', to: 'meals#participants_list'
   root 'static_pages#home'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
