@@ -8,6 +8,10 @@ group :development, :test do
   gem 'sqlite3'
 end
 
+group :production do
+  gem 'pg'
+end
+
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
 # Experimental Bootstrap 3.0 beta -- use at your own risk.
