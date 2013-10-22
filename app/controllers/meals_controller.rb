@@ -15,4 +15,11 @@ class MealsController < ApplicationController
   def participants_list
 
   end
+
+  # what action in this controller gets called when a meal is finished and we want to send out emails?
+  # for now, this is the helper to send payment request emails
+  private
+    def send_payment_request(email, amount, leader, restaurant)
+      UserMailer.payment_request_email(email, amount, leader, restaurant).deliver
+    end
 end
