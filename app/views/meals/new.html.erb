@@ -1,0 +1,6 @@
+<h1>Choose a restaurant</h1>
+
+<%= form_tag("/restaurant_choice", method: "post") do %>
+  <%= text_field_tag(:restaurant_name) %>
+  <%= submit_tag("Next >>") %>
+<% end %>

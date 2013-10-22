@@ -31,3 +31,5 @@ Tasks
 	+ Home
 + Autocomplete/autosuggest
 	+ How to do this? What gem? Demo?
+		+ Best way is probably bootstrap typeahead
++ Rake task to populate restaurants
