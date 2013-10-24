@@ -6,28 +6,23 @@
   <%= text_field_tag :restaurant_name, nil, id: 'auto_complete_restaurant'	 %>
   <%= submit_tag("Next >>") %>
 <% end %>
+
 <script>
+	var restaurant_data
 	$.ajax({
-		url: "/load_suggestions"
+		url: "/load_suggestions.json"
 	})
 	 .done(function(data) {
-	 	console.log(data)
+	 	console.log(data);
+	 	restaurant_data = data;
 	 })
-
-	$('#auto_complete_restaurant.typeahead').typeahead([
+	$('#auto_complete_restaurant').typeahead([
+			
   {
-    prefetch: '/load_suggestions' // url loading wrong?
-    
-
+  	name: 'name',
+  	prefetch: '/load_suggestions.json',
+  	valueKey: 'name',
     
    }
 ]);
 </script>
-<!--<script type="text/javascript">
-    jQuery(document).ready(function() {
-        $('#auto_complete_restaurant').typeahead({
-name: 'restaurants',
-local: [ "Area Four", "Flour Bakery and Cafe", "Chicago Pizza", "Max Brenner", "Legal Seafoods", "Veggie Galaxy", "Life Alive", "Capital Grille", "80 Thoreau", "Bergamot", "Bistro Du Midi", "Blue Ginger", "Bondir", "The Butcher Shop", "Catalyst", "Ceia", "Clio", "Coppa", "Craigie on Main", "Deuxave", "East by Northeast", "Erbaluce", "The Gallows", "Grill 23", "Hamersley's Bistro", "Harvest", "La Verdes", "Helamnd", "Hungry Mother", "Il Casale", "Island Creek Oyster Bar" ]
-});
-    });
-</script>-->

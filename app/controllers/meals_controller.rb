@@ -17,11 +17,10 @@ class MealsController < ApplicationController
   end
 
   def index
-    @autocomplete_items = Meal.all
   end
 
-  #def load_suggestions
-   # @suggestions = Restaurant.select(:name) or Restaurant.find(:all, conditions: [...])
-   # render json: @suggestions
-  #end
+  def load_suggestions
+      @suggestions = Restaurant.select(:name) or Restaurant.find(:all)
+      render json: @suggestions
+  end
 end

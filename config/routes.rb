@@ -11,7 +11,7 @@ VpontisEmzhangTscizzleProj3::Application.routes.draw do
   match '/participants_list', via: 'post', to: 'meals#participants_list'
   root 'static_pages#home'
 
-  match '/load_suggestions', via: 'get', to: 'restaurants#load_suggestions'
+  match '/load_suggestions.json', via: 'get', to: 'restaurants#load_suggestions'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
