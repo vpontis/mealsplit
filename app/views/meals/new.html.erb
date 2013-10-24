@@ -1,3 +1,5 @@
+<% provide(:onload_js, "populate_typeahead();") %>
+
 <h1>Choose a restaurant</h1>
 
 <%= form_tag("/restaurant_choice", method: "post") do %>
@@ -6,23 +8,3 @@
   <%= text_field_tag :restaurant_name, nil, id: 'auto_complete_restaurant'	 %>
   <%= submit_tag("Next >>") %>
 <% end %>
-
-<script>
-	var restaurant_data
-	$.ajax({
-		url: "/load_suggestions.json"
-	})
-	 .done(function(data) {
-	 	console.log(data);
-	 	restaurant_data = data;
-	 })
-	$('#auto_complete_restaurant').typeahead([
-			
-  {
-  	name: 'name',
-  	remote: '/load_suggestions.json',
-  	valueKey: 'name',
-    
-   }
-]);
-</script>
