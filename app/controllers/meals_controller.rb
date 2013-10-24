@@ -16,6 +16,10 @@ class MealsController < ApplicationController
 
   end
 
+  def test_email
+    send_payment_request("tscizzle@gmail.com", "$5.49", "Abraham of the Sea", "McD's")
+  end
+
   # what action in this controller gets called when a meal is finished and we want to send out emails?
   # for now, this is the helper to send payment request emails
   private
