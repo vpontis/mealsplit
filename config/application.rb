@@ -20,10 +20,9 @@ module VpontisEmzhangTscizzleProj3
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
 
-    
-      # mail stuff
-      config.action_mailer.raise_delivery_errors = true
-      config.action_mailer.delivery_method = :smtp
-      config.action_mailer.perform_deliveries = true
+
+    # mail stuff
+    config.action_mailer.raise_delivery_errors = true
+    config.action_mailer.perform_deliveries = true
   end
 end
