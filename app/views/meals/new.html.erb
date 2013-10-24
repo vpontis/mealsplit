@@ -1,6 +1,33 @@
 <h1>Choose a restaurant</h1>
 
 <%= form_tag("/restaurant_choice", method: "post") do %>
-  <%= text_field_tag(:restaurant_name) %>
+
+
+  <%= text_field_tag :restaurant_name, nil, id: 'auto_complete_restaurant'	 %>
   <%= submit_tag("Next >>") %>
 <% end %>
+<script>
+	$.ajax({
+		url: "/load_suggestions"
+	})
+	 .done(function(data) {
+	 	console.log(data)
+	 })
+
+	$('#auto_complete_restaurant.typeahead').typeahead([
+  {
+    prefetch: '/load_suggestions' // url loading wrong?
+    
+
+    
+   }
+]);
+</script>
+<!--<script type="text/javascript">
+    jQuery(document).ready(function() {
+        $('#auto_complete_restaurant').typeahead({
+name: 'restaurants',
+local: [ "Area Four", "Flour Bakery and Cafe", "Chicago Pizza", "Max Brenner", "Legal Seafoods", "Veggie Galaxy", "Life Alive", "Capital Grille", "80 Thoreau", "Bergamot", "Bistro Du Midi", "Blue Ginger", "Bondir", "The Butcher Shop", "Catalyst", "Ceia", "Clio", "Coppa", "Craigie on Main", "Deuxave", "East by Northeast", "Erbaluce", "The Gallows", "Grill 23", "Hamersley's Bistro", "Harvest", "La Verdes", "Helamnd", "Hungry Mother", "Il Casale", "Island Creek Oyster Bar" ]
+});
+    });
+</script>-->
