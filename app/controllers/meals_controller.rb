@@ -9,7 +9,7 @@ class MealsController < ApplicationController
   end
 
   def get_participants
-    send_payment_request("tscizzle@mit.edu", "$5.49", "Abraham of the Sea", "McD's")
+      UserMailer.payment_request_email(email, amount, leader, restaurant).deliver
   end
 
   def participants_list
