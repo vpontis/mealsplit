@@ -9,7 +9,9 @@ VpontisEmzhangTscizzleProj3::Application.routes.draw do
   match '/participants_list', via: 'post', to: 'meals#participants_list'
   root 'static_pages#home'
 
+  # test email notification
   match '/testEmail', via: 'get', to: 'meals#test_email'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
