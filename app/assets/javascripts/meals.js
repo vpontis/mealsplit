@@ -1,10 +1,11 @@
 var populate_typeahead = function(){
-  $('#auto_complete_restaurant').typeahead([      
+  $('#auto_complete_restaurant').typeahead(      
     {
-      name: 'name',
-      remote: '/load_suggestions.json',
-      valueKey: 'name',    
-    }]);
+      name: 'restaurant list',
+      prefetch: '/load_suggestions.json',
+      ttl: 86400000
+    }
+  );
 };
 
 var meal_participants = 1;
