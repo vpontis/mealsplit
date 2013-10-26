@@ -33,6 +33,14 @@ class MealsController < ApplicationController
     redirect_to edit_meal_participant_path(meal, meal_payer)
   end
 
+  def meal_summary
+  end
+
+  def complete_meal
+    # send a payment request to each email in the list of participants
+    redirect_to root_path
+  end
+
   def index
   end
 
