@@ -14,6 +14,6 @@
 	<% end %>
 <% end %>
 
-<%= form_tag("/complete_meal", method: "post") do %>
+<%= form_tag(meal_path+"/complete_meal", method: "post") do %>
   <%= submit_tag("Send Payment Requests") %>
 <% end %>
