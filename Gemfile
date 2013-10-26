@@ -14,11 +14,6 @@ group :production do
   gem 'rails_12factor'
 end
 
-group :production do
-  gem 'pg'
-  gem 'rails_12factor'
-end
-
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
 # Experimental Bootstrap 3.0 beta -- use at your own risk.
