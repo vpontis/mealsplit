@@ -1,20 +1,22 @@
+<% provide(:onload_js, "populate_food_item_typeahead(#{@restaurant.id});") %>
+
 <h1>Enter in Food Items for <%= @participant.email %></h1>
 
-<% @participant.food_items.each do |food_item| %>
-  <% if !food_item.id.nil? %>
-    <div>
+<%# @participant.food_items.each do |food_item| %>
+  <%# if !food_item.id.nil? %>
+<!--     <div>
       <strong>Food Item</strong> 
-      <%= food_item.name %>
-      <%= food_item.cost %>
-      Destroy link
-    </div>
-  <% end %>
-<% end %>
+ -->      <%#= food_item.name %>
+      <%#= food_item.cost %>
+<!--       Destroy link
+    </div> -->
+  <%# end %>
+<%# end %>
 
-<%= form_for('/add_food_item') do %>
+<%= form_for('/add_food_item') do |f| %>
   <div>
     <%= label_tag(:new_food_item, "Food Item", class: 'food-item-label') %>
-    <%= text_field_tag(:new_food_item %>
+    <%= text_field_tag(:new_food_item, "", class: "food-item-input") %>
   </div>
   <div>
     <%= submit_tag("Add Food Item", class: 'btn btn-primary') %>

@@ -5,6 +5,7 @@ class ParticipantsController < ApplicationController
 
   def edit
     @meal = Meal.find(params[:meal_id])
+    @restaurant = Restaurant.find(@meal.restaurant_id)
     @participant = @meal.participants.find(params[:id])
   end
 
