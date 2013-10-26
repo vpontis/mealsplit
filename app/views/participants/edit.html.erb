@@ -1,0 +1,10 @@
+<h1>Enter in food items for <%= @participant.email %></h1>
+
+<% form_for(participant) do |f| %>
+  <%= label_tag(:meal_participant_1, "Meal Participant", class: 'food-item-label') %>
+  <% text_field_tag(:food_item_1)
+<% end %>
+
+<% @meal.participants.each do |participant| %>
+  <%= link_to participant.email, edit_meal_participant_path(@meal, participant) %>
+<% end %>
