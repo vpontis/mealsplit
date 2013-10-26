@@ -24,3 +24,6 @@
 
 <br />
 <p>Done adding participants?</p>
+
+<%= link_to "Next Page >>", edit_meal_participant_path(@meal, @meal.participants.first),
+    class: "btn btn-primary" %>

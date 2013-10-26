@@ -3,6 +3,6 @@
 <h1>Choose a restaurant</h1>
 
 <%= form_for(@meal) do %>
-  <%= text_field_tag :restaurant_name, nil, id: 'restaurant-name-input'	 , class: 'typeahead' %>
+  <%= text_field_tag :restaurant_name, nil, id: 'restaurant-name-input', class: 'typeahead' %>
   <%= submit_tag("Next >>") %>
 <% end %>

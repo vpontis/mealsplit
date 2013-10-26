@@ -1,4 +1,6 @@
 VpontisEmzhangTscizzleProj3::Application.routes.draw do
+  root 'static_pages#home'
+
   resources :meals do
     resources :participants
     resources :charges
@@ -6,13 +8,16 @@ VpontisEmzhangTscizzleProj3::Application.routes.draw do
 
   resources :restaurants
 
-  root 'static_pages#home'
-
   # test email notification
   match '/testEmail', via: 'get', to: 'meals#test_email'
 
+  match 'meals/:id/meal_summary', via: 'get', to: 'meals#meal_summary'
+  match 'meals/:id/complete_meal', via: 'post', to: 'meals#complete_meal'
+
+
   match '/restaurant_suggestions.json', via: 'get', to: 'restaurants#restaurant_suggestions'
   match '/food_item_suggestions.json', via: 'get', to: 'restaurants#food_item_suggestions'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

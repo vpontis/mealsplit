@@ -1,0 +1,19 @@
+<h1>Confirm Meal Details</h1>
+
+<h3>Restaurant:</h3>
+<p><%= @restaurant_name %></p>
+
+<h3>Participants:</h3>
+<% @participants.each do |participant| %>
+	<% if !participant.payer %>
+		<h4><%= participant.name %></h4>
+		<h5>owes:</h5>
+		<p>$<%= participant.owes %></p>
+		<h5>Request will be sent to:</h4>
+		<p><%= participant.email %></p>
+	<% end %>
+<% end %>
+
+<%= form_tag("/complete_meal", method: "post") do %>
+  <%= submit_tag("Send Payment Requests") %>
+<% end %>
