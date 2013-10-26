@@ -3,6 +3,6 @@ class Meal < ActiveRecord::Base
   has_many :participants
 
   def next_participant
-    self.participants.find(processed: false) 
+    self.participants.find(processed: false).first
   end
 end

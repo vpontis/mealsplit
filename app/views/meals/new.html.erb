@@ -2,9 +2,7 @@
 
 <h1>Choose a restaurant</h1>
 
-<%= form_tag("/restaurant_choice", method: "post") do %>
-
-
-  <%= text_field_tag :restaurant_name, nil, id: 'restaurant-name-input'	 %>
+<%= form_for(@meal) do %>
+  <%= text_field_tag :restaurant_name, nil, id: 'restaurant-name-input'	 , class: 'typeahead' %>
   <%= submit_tag("Next >>") %>
 <% end %>

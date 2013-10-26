@@ -6,9 +6,6 @@ VpontisEmzhangTscizzleProj3::Application.routes.draw do
 
   resources :restaurants
 
-  match '/restaurant_choice', via: 'post', to: 'meals#restaurant_choice'
-  match '/get_participants', via: 'get', to: 'meals#get_participants'
-  match '/participants_list', via: 'post', to: 'meals#participants_list'
   root 'static_pages#home'
 
   # test email notification
