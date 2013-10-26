@@ -1,4 +1,6 @@
 VpontisEmzhangTscizzleProj3::Application.routes.draw do
+  root 'static_pages#home'
+
   resources :meals do
     resources :participants
     resources :charges
@@ -9,7 +11,8 @@ VpontisEmzhangTscizzleProj3::Application.routes.draw do
   match '/restaurant_choice', via: 'post', to: 'meals#restaurant_choice'
   match '/get_participants', via: 'get', to: 'meals#get_participants'
   match '/participants_list', via: 'post', to: 'meals#participants_list'
-  root 'static_pages#home'
+  match 'meals/:id/meal_summary', via: 'get', to: 'meals#meal_summary'
+  match 'meals/:id/complete_meal', via: 'post', to: 'meals#complete_meal'
 
   match '/restaurant_suggestions.json', via: 'get', to: 'restaurants#restaurant_suggestions'
   match '/food_item_suggestions.json', via: 'get', to: 'restaurants#food_item_suggestions'

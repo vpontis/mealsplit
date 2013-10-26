@@ -34,6 +34,9 @@ class MealsController < ApplicationController
   end
 
   def meal_summary
+    @restaurant_name = cookies[:restaurant_name]
+    meal_id = params[:id]
+    @participants = Meal.find(meal_id).participants
   end
 
   def complete_meal
