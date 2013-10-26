@@ -1,11 +1,12 @@
-var populate_typeahead = function(){
-  $('#auto_complete_restaurant').typeahead(      
+var populate_restaurant_typeahead = function(){
+  $('#restaurant-name-input').typeahead(      
     {
       name: 'restaurant list',
       prefetch: '/restaurant_suggestions.json',
       ttl: 8640000
     }
   );
+  return 5;
 };
 
 var meal_participants = 1;

@@ -1,10 +1,10 @@
-<% provide(:onload_js, "populate_typeahead();") %>
+<% provide(:onload_js, "populate_restaurant_typeahead();") %>
 
 <h1>Choose a restaurant</h1>
 
 <%= form_tag("/restaurant_choice", method: "post") do %>
 
 
-  <%= text_field_tag :restaurant_name, nil, id: 'auto_complete_restaurant'	 %>
+  <%= text_field_tag :restaurant_name, nil, id: 'restaurant-name-input'	 %>
   <%= submit_tag("Next >>") %>
 <% end %>

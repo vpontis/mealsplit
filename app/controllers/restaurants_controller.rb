@@ -1,6 +1,6 @@
 class RestaurantsController < ApplicationController
   def new
-      @restaurant = Restaurant.new
+    @restaurant = Restaurant.new
   end
 
   def create
@@ -11,17 +11,20 @@ class RestaurantsController < ApplicationController
     @autocomplete_items = Restaurant.all
   end
 
-  def load_suggestions
+  def restaurant_suggestions
     @suggestions = Restaurant.select(:name) or Restaurant.find(:all)
-    logger.debug @suggestions
-    # @suggestions = @suggestions.map! do |suggestion|
-    #   {
-    #     value: suggestion.name.gsub("'", ""),
-    #     tokens: suggestion.name.gsub("'", "").split
-    #   }
-    # end
     @suggestions.map! { |s| s.name.gsub("'", "") }
-    logger.debug @suggestions
+    render json: @suggestions
+  end
+
+  def food_item_suggestions
+    restaurant = Restaurant.find(params[:restaurant_id]) unless params[:restaurant_id].nil?
+    if restaurant.nil?
+      @suggestions = []
+    else
+      @suggestions = restaurant.food_items
+      @suggestions.map! { |s| s.name.gsub("'", "") }
+    end
     render json: @suggestions
   end
 end

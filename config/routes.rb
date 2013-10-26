@@ -14,7 +14,8 @@ VpontisEmzhangTscizzleProj3::Application.routes.draw do
   # test email notification
   match '/testEmail', via: 'get', to: 'meals#test_email'
 
-  match '/restaurant_suggestions.json', via: 'get', to: 'restaurants#load_suggestions'
+  match '/restaurant_suggestions.json', via: 'get', to: 'restaurants#restaurant_suggestions'
+  match '/food_item_suggestions.json', via: 'get', to: 'restaurants#food_item_suggestions'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

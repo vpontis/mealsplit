@@ -1,5 +1,5 @@
-var populate_typeahead = function(restaurant_id){
-  $('.auto_complete_food_item').typeahead(      
+var populate_food_item_typeahead = function(restaurant_id){
+  $('.food_item_input').typeahead(      
     {
       name: 'food item list',
       prefetch: '/food_item_suggestions.json?restaurant_id=' + restaurant_id,

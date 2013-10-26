@@ -1,14 +1,18 @@
 <h1>Enter in Food Items for <%= @participant.email %></h1>
 
-<%= form_tag([@meal, @participant], method: "post") do %>
+<%= form_tag([@meal, @participant], method: "put") do %>
   <input id="food-items" name="food_items" type="hidden" value="1">
   <div id="food-item-1">
     <%= label_tag(:food_item_1, "Food Item", class: 'food-item-label') %>
-    <%= text_field_tag(:food_item_1) %>
+    <%= text_field_tag(:food_item_1, '', class: 'food-item-input', placeholder: "Burrito...") %>
   </div> 
   <button id="add-food-item-button" type="button" class="btn btn-default" onclick="add_food_item()">
     Add Food Item <span class="glyphicon glyphicon-plus">
   </button>
+  <div id="submit-button">
+    <%= submit_tag("Save & Next >>", class: 'btn btn-primary') %>
+  </div>
+
 <% end %>
 
   

@@ -7,4 +7,8 @@ class ParticipantsController < ApplicationController
     @meal = Meal.find(params[:meal_id])
     @participant = @meal.participants.find(params[:id])
   end
+
+  def update
+    
+  end
 end
