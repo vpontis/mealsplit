@@ -18,7 +18,8 @@ var add_meal_participant = function() {
   $(new_meal_participant).find('label').attr('for', new_meal_participant_id);
   $(new_meal_participant).find('input')
     .attr('name', new_meal_participant_id)
-    .attr('id', new_meal_participant_id);
+    .attr('id', new_meal_participant_id)
+    .val('');
   $(new_meal_participant).insertBefore('#add-participant-button');
   return new_meal_participant;
 }
