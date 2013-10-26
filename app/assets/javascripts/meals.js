@@ -2,8 +2,8 @@ var populate_typeahead = function(){
   $('#auto_complete_restaurant').typeahead(      
     {
       name: 'restaurant list',
-      prefetch: '/load_suggestions.json',
-      ttl: 86400000
+      prefetch: '/restaurant_suggestions.json',
+      ttl: 8640000
     }
   );
 };
