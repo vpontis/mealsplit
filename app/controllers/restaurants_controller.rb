@@ -22,7 +22,7 @@ class RestaurantsController < ApplicationController
     if restaurant.nil?
       @suggestions = []
     else
-      @suggestions = restaurant.food_items
+      @suggestions = restaurant.food_items.all
       @suggestions.map! { |s| s.name.gsub("'", "") }
     end
     render json: @suggestions
