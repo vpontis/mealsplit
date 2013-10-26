@@ -43,7 +43,7 @@ ActiveRecord::Schema.define(version: 20131026213505) do
     t.integer  "meal_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "processed"
+    t.boolean  "processed",  default: false
     t.float    "owes"
   end
 
