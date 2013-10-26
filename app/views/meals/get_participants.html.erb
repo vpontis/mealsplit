@@ -1,11 +1,21 @@
-<h1>Please list the participants</h1>
+<h1>Who ate at <%= @restaurant_name %>?</h1>
 
 <p>Please list the email of who paid for the receipt and the emails of everyone at the meal.</p>
 
 <%= form_tag("/participants_list", method: "post") do %>
-  <%= label_tag(:meal_payer_name, "Who paid?") %>
-  <%= text_field_tag(:meal_payer_name) %>
-  <%= label_tag(:meal_participant) %>
-  <%= text_field_tag(:meal_participant) %>
-  <%= submit_tag("Next >>") %>
+  <input id="meal-participants" name="meal_participants" type="hidden" value="1">
+  <div>
+    <%= label_tag(:meal_payer_name, "Who paid?", class: 'participant-label') %>
+    <%= text_field_tag(:meal_payer_name) %>
+  </div>
+  <div id="meal-participant-1">
+    <%= label_tag(:meal_participant_1, "Meal Participant", class: 'participant-label') %>
+    <%= text_field_tag(:meal_participant_1) %>
+  </div>
+  <button id="add-participant-button" type="button" class="btn btn-default" onclick="add_meal_participant()">
+    Add Participant <span class="glyphicon glyphicon-plus">
+  </button>
+  <div id="submit-button">
+    <%= submit_tag("Next >>", class: 'btn btn-primary') %>
+  </div>
 <% end %>

@@ -4,6 +4,7 @@ class CreateParticipants < ActiveRecord::Migration
       t.string :name
       t.string :email
       t.boolean :payer
+      t.integer :meal_id
 
       t.timestamps
     end
