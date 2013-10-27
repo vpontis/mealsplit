@@ -14,6 +14,11 @@ class ParticipantsController < ApplicationController
     @participant = @meal.participants.find(params[:id])
     @restaurant = Restaurant.find(@meal.restaurant_id)
     @food_item = @restaurant.food_items.find_by(name: params[:new_food_item])
+    if @food_item.nil?
+      puts "aaaaaaaaa"
+      flash[:danger] = "You can't add an empty food item."
+      redirect_to root_path
+    end
     @participant.food_items << @food_item
     @participant.processed = true
     @participant.save
@@ -22,7 +27,7 @@ class ParticipantsController < ApplicationController
 
   def create
     @meal = Meal.find(params[:meal_id])
-    if params[:new_meal_participant].valid? 
+    if params[:new_meal_participant].blank?
       flash[:danger] = "You have to enter in a vaild email."
       redirect_to meal_participants_path(@meal)
       return
