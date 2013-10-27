@@ -12,7 +12,6 @@
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema.define(version: 20131027180958) do
-
   create_table "charges", force: true do |t|
     t.integer  "payer_id"
     t.integer  "amount"
