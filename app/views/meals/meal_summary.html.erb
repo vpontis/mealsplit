@@ -1,16 +1,18 @@
 <h1>Confirm Meal Details</h1>
 
-<h3>Restaurant:</h3>
+<h2>Restaurant:</h2>
 <p><%= @restaurant_name %></p>
 
-<h3>Participants:</h3>
+<h2>Participants:</h2>
 <% @meal.participants.each do |participant| %>
 	<% if !participant.payer %>
-		<h4><%= participant.name %></h4>
-		<h5>owes:</h5>
-		<p>$<%= participant.owes %></p>
-		<h5>Request will be sent to:</h4>
-		<p><%= participant.email %></p>
+		<h3><%= participant.name %></h3>
+		<h5>Items:</h5>
+		<% participant.food_items.each do |item| %>
+			<p><%= item %>: <%= item.cost %></p>
+		<% end %>
+		<h5>Total:</h5><p>$<%= participant.owes %></p>
+		<p>Request will be sent to: <%= participant.email %>.</p>
 	<% end %>
 <% end %>
 
