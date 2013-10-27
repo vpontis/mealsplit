@@ -1,49 +1,57 @@
 <% provide(:onload_js, "populate_food_item_typeahead(#{@restaurant.id});") %>
 
-<h1>Enter in Food Items for <%= @participant.email %></h1>
+<div class="row">
+  <div class="col-md-8">
+    <h1>Enter in Food Items for <%= @participant.email %></h1>
 
-<% if @participant.food_items.count != 0 %>
-  <h2>Your current tally</h2>
-<% end %>
-<% @participant.food_items.each do |food_item| %>
-  <% if !food_item.id.nil? %>
-    <div class="food-item">
-      <span class="food-item-name"><%= food_item.name%></span>
-      <span class="food-item-cost"><%= number_to_currency(food_item.cost.to_f/100) %></span>
-      <%= link_to "I didn't get this!", destroy_food_item_path(@meal, @participant, food_item), method: :delete, data: {confirm: "Are you sure you didn't eat a #{food_item.name}?"} %>
-    </div>
-  <% end %>
-<% end %>
+    <% if @participant.food_items.count != 0 %>
+      <h2>Your current tally</h2>
+    <% end %>
+    <% @participant.food_items.each do |food_item| %>
+      <% if !food_item.id.nil? %>
+        <div class="food-item">
+          <span class="food-item-name"><%= food_item.name%></span>
+          <span class="food-item-cost"><%= number_to_currency(food_item.cost.to_f/100) %></span>
+          <%= link_to "I didn't get this!", destroy_food_item_path(@meal, @participant, food_item), method: :delete, data: {confirm: "Are you sure you didn't eat a #{food_item.name}?"} %>
+        </div>
+      <% end %>
+    <% end %>
 
-<h2>What else did you get?</h2>
-<%= form_for([@meal, @participant], html: {class: "form-group", role: "form"}) do |f| %>
-  <div class="form-group">
-    <%= text_field_tag(:new_food_item, "", id: "food-item-input", class: "form-control", placeholder: "A yummy...") %>
+    <h2>What else did you get?</h2>
+    <%= form_for([@meal, @participant], html: {class: "form-group", role: "form"}) do |f| %>
+      <div class="form-group">
+        <%= text_field_tag(:new_food_item, "", id: "food-item-input", class: "form-control", placeholder: "A yummy...") %>
+      </div>
+      
+      <div class="form-group">
+        <%= submit_tag("Add Food Item", class: 'btn btn-primary action-button') %>
+      </div>
+    <% end %>
+
+    <br />
+
+    <% if @meal.unprocessed_participants.empty? %>
+      <%= link_to "Meal Summary and Confirmation", @meal.summary_path, class: "btn btn-primary" %>
+    <% else %>  
+      <%= link_to "Next Participant >>", @meal.next_participant_path,
+        class: "btn btn-primary" %>
+    <% end %>
+
+    <p>Changed your mind?
+    <%= link_to "Start Over", new_meal_path,
+        class: "btn btn-sm" %></p>
   </div>
-  
-  <div class="form-group">
-    <%= submit_tag("Add Food Item", class: 'btn btn-primary action-button') %>
+
+  <div class="col-md-4">
+    <h2>Edit another participant</h2>
+    <p>You can also click next participant to jump to the next participant who hasn't entered in their food items.</p>
+    <% @meal.participants.each do |participant| %>
+      <% if participant.id != @participant.id %>
+        <%= link_to "Edit #{participant.email}", edit_meal_participant_path(@meal, participant), class: "btn btn-default" %>
+      <% end %>
+    <% end %>
+    <h2>Manage participants</h2>
+    <p>Did you forget that Jim was there? Or did Susan not order anything? Go back to the participant management page to update who was at the meal.</p>
+    <%= link_to "Back to participant management", meal_participants_path(@meal), class: "btn btn-default" %>
   </div>
-<% end %>
-
-<br />
-
-<% if @meal.unprocessed_participants.empty? %>
-  <%= link_to "Meal Summary and Confirmation", @meal.summary_path, class: "btn btn-primary" %>
-<% else %>  
-  <%= link_to "Next Participant >>", @meal.next_participant_path,
-    class: "btn btn-primary" %>
-<% end %>
-
-<br/>
-<p>Or choose the next participant to enter items for:</p>
-<% @meal.participants.each do |participant| %>
-  <% if participant.id != @participant.id %>
-    <%= link_to participant.email, edit_meal_participant_path(@meal, participant) %>
-  <% end %>
-<% end %>
-
-<p>Changed your mind?
-<%= link_to "Start Over", new_meal_path,
-    class: "btn btn-sm" %></p>
-
+</div>
