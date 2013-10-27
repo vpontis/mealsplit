@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131027180958) do
+ActiveRecord::Schema.define(version: 20131027202051) do
 
   create_table "charges", force: true do |t|
     t.integer  "payer_id"
@@ -36,7 +36,7 @@ ActiveRecord::Schema.define(version: 20131027180958) do
 
   create_table "meals", force: true do |t|
     t.integer  "restaurant_id"
-    t.integer  "meal_payer_id"
+    t.integer  "payer_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
