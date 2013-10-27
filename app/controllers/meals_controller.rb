@@ -35,9 +35,11 @@ class MealsController < ApplicationController
       end
     end
     participants.each do |participant|
-      email = participant.email
-      amount = participant.owes/100.0
-      send_payment_request(email, amount, leader_name, restaurant_name)
+      if !participant.payer
+        email = participant.email
+        amount = participant.owes/100.0
+        send_payment_request(email, amount, leader_name, restaurant_name)
+      end
     end
     redirect_to root_path
   end
