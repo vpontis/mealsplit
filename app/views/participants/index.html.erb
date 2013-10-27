@@ -20,7 +20,7 @@
     <% end %>
 
     <% if @meal.payer.nil? %>
-      <h2>Who paid for the meal?<h2>
+      <h2>Who paid for the meal?</h2>
         <%= form_for([@meal, @new_participant], html: {role: 'form', class: 'form-group'}) do %>
         <input type="hidden", name="payer" value="1" />
         <div class='form-group'>
@@ -50,12 +50,8 @@
 
       <%= link_to "Next Page >>", @meal.next_participant_path,
           class: "btn btn-primary" %>
+    <% else %>
+      <p>To move on you need to specify who paid and have at least two participants. You didn't eat alone, did you?</p>
     <% end %>
-
-    <br>
-    <br>
-    <p>Changed your mind?
-    <%= link_to "Start Over", new_meal_path,
-        class: "btn btn-sm" %></p>
   </div>
 </div>
