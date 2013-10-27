@@ -13,9 +13,6 @@
 	<% if !participant.payer %>
 		<h5>Total:</h5><p>$<%= participant.owes %></p>
 		<p>Request will be sent to: <%= participant.email %>.</p>
-		edit_meal_participant_path(meal, participant)
-		<%= button_to "Edit "+participant.email+"'s Order",
-			edit_meal_participant_path(@meal, participant), :method => "get" %>
 	<% end %>
 	<%= button_to "Edit "+participant.email+"'s Order", edit_meal_participant_path(@meal, participant), :method => "get" %>
 <% end %>
