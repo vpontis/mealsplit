@@ -11,8 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131026233305) do
-
+ActiveRecord::Schema.define(version: 20131027180958) do
   create_table "charges", force: true do |t|
     t.integer  "payer_id"
     t.integer  "amount"
@@ -49,7 +48,6 @@ ActiveRecord::Schema.define(version: 20131026233305) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "processed",  default: false
-    t.float    "owes"
   end
 
   create_table "restaurants", force: true do |t|

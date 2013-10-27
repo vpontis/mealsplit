@@ -4,7 +4,7 @@
 <p><%= @restaurant_name %></p>
 
 <h3>Participants:</h3>
-<% @participants.each do |participant| %>
+<% @meal.participants.each do |participant| %>
 	<% if !participant.payer %>
 		<h4><%= participant.name %></h4>
 		<h5>owes:</h5>
