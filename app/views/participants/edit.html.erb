@@ -16,12 +16,12 @@
 <% end %>
 
 <h2>What else did you get?</h2>
-<%= form_for([@meal, @participant]) do |f| %>
-  <div>
-    <%= text_field_tag(:new_food_item, "", class: "food-item-input", placeholder: "A yummy...") %>
+<%= form_for([@meal, @participant], html: {class: "form-group", role: "form"}) do |f| %>
+  <div class="form-group">
+    <%= text_field_tag(:new_food_item, "", id: "food-item-input", class: "form-control", placeholder: "A yummy...") %>
   </div>
-  <div>
-    <%= submit_tag("Add Food Item", class: 'btn btn-primary') %>
+  <div class="form-group">
+    <%= submit_tag("Add Food Item", class: 'btn btn-primary action-button') %>
   </div>
 <% end %>
 
