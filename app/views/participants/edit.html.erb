@@ -8,7 +8,7 @@
       <strong>Food Item</strong> 
       <%= food_item.name+","%>
       <%= number_to_currency(food_item.cost.to_f/100) %>
-      <%= link_to "Destroy", destroy_food_item_path(@meal, @participant), method: :delete, data: {confirm: "Sure dude?"} %>
+      <%= link_to "Destroy", destroy_food_item_path(@meal, @participant, food_item), method: :delete, data: {confirm: "Sure dude?"} %>
     </div>
   <% end %>
 <% end %>
