@@ -2,3 +2,21 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+@import "bootstrap";
+
+#mealSummaryContainer {
+	text-align: center;
+}
+
+#mealSummaryDetailsRow {
+	margin-top: 10px;
+}
+
+#mealSummaryDetailsColumn {
+	background-color: #D0D0D0;
+	padding: 10px;
+}
+
+#mealSummarySubmitRow {
+	margin-top: 10px;
+}
