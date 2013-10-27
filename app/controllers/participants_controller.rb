@@ -1,5 +1,5 @@
 class ParticipantsController < ApplicationController
-  before_filter :get_meal_and_participant, only: [:edit, :update, :destroy, :destroy_food_item]
+  before_filter :get_meal_and_participant, only: [:edit, :update, :destroy, :destroy_food_item, :create]
   before_filter :get_meal,                 only: [:index]
 
   def new
@@ -25,11 +25,12 @@ class ParticipantsController < ApplicationController
 
 
   def create
-    if params[:new_meal_participant].valid? 
+    if params[:new_meal_participant].blank?
       flash[:danger] = "You have to enter in a vaild email."
       redirect_to meal_participants_path(@meal)
       return
     end
+
     @new_participant = @meal.participants.build(email: params[:new_meal_participant])
     @new_participant.save
     if params[:payer].to_i == 1
@@ -59,7 +60,7 @@ class ParticipantsController < ApplicationController
 private
   def get_meal_and_participant
     @meal = Meal.find(params[:meal_id])
-    @participant = @meal.find_by(id: params[:id])
+    @participant = @meal.participants.find_by(id: params[:id])
     @restaurant = @meal.restaurant
   end
 
