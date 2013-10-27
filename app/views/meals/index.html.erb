@@ -1,0 +1,7 @@
+<h1>Meals</h1>
+
+<% @meals.each do |meal| %>
+  <div> 
+    <%= link_to "Meal #{meal.id}", meal_participants_path(meal) %>
+  </div>
+<% end %>
