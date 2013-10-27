@@ -29,3 +29,9 @@
   <%= link_to "Next Page >>", @meal.next_participant_path,
       class: "btn btn-primary" %>
 <% end %>
+
+<br>
+<br>
+<p>Changed your mind?
+<%= link_to "Start Over", new_meal_path,
+    class: "btn btn-sm" %></p>
