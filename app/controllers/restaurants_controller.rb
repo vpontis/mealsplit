@@ -18,6 +18,8 @@ class RestaurantsController < ApplicationController
   end
 
   def food_item_suggestions
+    logger.debug "HELLLOOO"
+    logger.debug params
     restaurant = Restaurant.find(params[:restaurant_id]) unless params[:restaurant_id].nil?
     if restaurant.nil?
       @suggestions = []
