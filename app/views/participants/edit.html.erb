@@ -6,7 +6,7 @@
   <% if !food_item.id.nil? %>
     <div>
       <strong>Food Item</strong> 
-      <%= food_item.name+","%>
+      <%= food_item.name+":"%>
       <%= number_to_currency(food_item.cost.to_f/100) %>
       <%= link_to "Destroy", destroy_food_item_path(@meal, @participant), method: :delete, data: {confirm: "Sure dude?"} %>
     </div>
@@ -34,7 +34,9 @@
     <%= link_to participant.email, edit_meal_participant_path(@meal, participant) %>
   <% end %>
 <% end %>
-
+<p>Forget a friend?
+<%= link_to "Add them", meal_participants_path(@meal),
+    class: "btn btn-sm" %></p>
 <p>Changed your mind?
 <%= link_to "Start Over", new_meal_path,
     class: "btn btn-sm" %></p>
