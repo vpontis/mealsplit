@@ -5,9 +5,9 @@
 		<h1>Confirm Meal Details</h1>
 	</div>
 </div>
-
 <div id="mealSummaryDetailsRow" class="row">
 	<div id="mealSummaryDetailsColumn" class="col-md-6 col-md-offset-3">
+
 
 		<h3>Restaurant:</h3>
 		<p><%= @restaurant_name %></p>
@@ -17,10 +17,10 @@
 			<h4><%= participant.email %></h4>
 			<h5>Items:</h5>
 			<% participant.food_items.each do |item| %>
-				<p><%= item %>: <%= item.cost %></p>
+				<p><%= item.name %>: <%= item.cost_pretty %></p>
 			<% end %>
 			<% if !participant.payer %>
-				<p><b>Total: $<%= participant.owes %></b></p>
+				<p><b>Total: <%= number_to_currency(participant.owes) %></b></p>
 				<p>Request will be sent to: <%= participant.email %>.</p>
 			<% end %>
 			<%= button_to "Edit "+participant.email+"'s Order", edit_meal_participant_path(@meal, participant),
