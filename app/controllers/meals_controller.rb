@@ -45,6 +45,7 @@ class MealsController < ApplicationController
   end
 
   def index
+    @meals = Meal.all
   end
 
 
