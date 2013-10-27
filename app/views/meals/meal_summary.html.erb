@@ -1,22 +1,40 @@
-<h1>Confirm Meal Details</h1>
+<div id="mealSummaryContainer" class="container">
 
-<h2>Restaurant:</h2>
-<p><%= @restaurant_name %></p>
+<div id="mealSummaryHeaderRow" class="row">
+	<div id="mealSummaryHeaderColumn" class="col-md-12">
+		<h1>Confirm Meal Details</h1>
+	</div>
+</div>
+<div id="mealSummaryDetailsRow" class="row">
+	<div id="mealSummaryDetailsColumn" class="col-md-6 col-md-offset-3">
 
-<h2>Participants:</h2>
-<% @meal.participants.each do |participant| %>
-	<h3><%= participant.email %></h3>
-	<h5>Items:</h5>
-	<% participant.food_items.each do |item| %>
-		<p><%= item.name %>: <%= item.cost_pretty %></p>
-	<% end %>
-	<% if !participant.payer %>
-		<h5>Total:</h5><p>$<%= participant.owes %></p>
-		<p>Request will be sent to: <%= participant.email %>.</p>
-	<% end %>
-	<%= button_to "Edit "+participant.email+"'s Order", edit_meal_participant_path(@meal, participant), :method => "get" %>
-<% end %>
 
-<%= form_tag(meal_path+"/complete_meal", method: "post") do %>
-  <%= submit_tag("Send Payment Requests") %>
-<% end %>
+		<h3>Restaurant:</h3>
+		<p><%= @restaurant_name %></p>
+
+		<h3>Participants:</h3>
+		<% @meal.participants.each do |participant| %>
+			<h4><%= participant.email %></h4>
+			<h5>Items:</h5>
+			<% participant.food_items.each do |item| %>
+				<p><%= item.name %>: <%= item.cost_pretty %></p>
+			<% end %>
+			<% if !participant.payer %>
+				<p><b>Total: <%= number_to_currency(participant.owes) %></b></p>
+				<p>Request will be sent to: <%= participant.email %>.</p>
+			<% end %>
+			<%= button_to "Edit "+participant.email+"'s Order", edit_meal_participant_path(@meal, participant),
+				{ :method => "get", :class => "btn" } %>
+		<% end %>
+	</div>
+</div>
+
+<div id="mealSummarySubmitRow" class="row">
+	<div id="mealSummarySubmitColumn" class="col-md-6 col-md-offset-3">
+		<%= form_tag(meal_path+"/complete_meal", method: "post") do %>
+		  <%= submit_tag("Send Payment Requests", class: "btn btn-primary") %>
+		<% end %>
+	</div>
+</div>
+
+</div>
