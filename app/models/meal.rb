@@ -7,7 +7,7 @@ class Meal < ActiveRecord::Base
     if !participant.nil?
       edit_meal_participant_path(self, participant)
     else
-      self.meal_summary_path
+      self.summary_path
     end
   end
 
@@ -15,7 +15,7 @@ class Meal < ActiveRecord::Base
     self.participants.where(processed: false)
   end
   
-  def meal_summary_path
+  def summary_path
     "/meals/#{self.id}/summary"
   end
 
