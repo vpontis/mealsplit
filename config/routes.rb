@@ -11,8 +11,8 @@ VpontisEmzhangTscizzleProj3::Application.routes.draw do
   # test email notification
   match '/testEmail', via: 'get', to: 'meals#test_email'
 
-  match 'meals/:id/meal_summary', via: 'get', to: 'meals#meal_summary'
-  match 'meals/:id/complete_meal', via: 'post', to: 'meals#complete_meal'
+  match '/meal/:id/summary', via: 'get', to: 'meals#meal_summary'
+  match '/meal/:id/complete_meal', via: 'post', to: 'meals#complete_meal'
 
 
   match '/restaurant_suggestions.json', via: 'get', to: 'restaurants#restaurant_suggestions'

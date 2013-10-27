@@ -15,15 +15,17 @@
 <%= form_for([@meal, @new_participant]) do %>
   <div>
     <%= label_tag(:new_meal_participant, "Meal Participant", class: 'participant-label') %>
-    <%= text_field_tag(:new_meal_participant) %>
+    <%= text_field_tag(:new_meal_participant, '', placeholder: 'sample@email.com') %>
   </div>
   <div>
     <%= submit_tag("Add Participant", class: 'btn btn-primary') %>
   </div>
 <% end %>
 
-<br />
-<p>Done adding participants?</p>
+<% if @meal.participants.count != 0 %>
+  <br />
+  <p>Done adding participants?</p>
 
-<%= link_to "Next Page >>", edit_meal_participant_path(@meal, @meal.next_participant),
-    class: "btn btn-primary" %>
+  <%= link_to "Next Page >>", @meal.next_participant_path,
+      class: "btn btn-primary" %>
+<% end %>

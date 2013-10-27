@@ -16,6 +16,8 @@ class ParticipantsController < ApplicationController
     @restaurant = Restaurant.find(@meal.restaurant_id)
     @food_item = @restaurant.food_items.find_by(name: params[:new_food_item])
     @participant.food_items << @food_item
+    @participant.processed = true
+    @participant.save
     redirect_to edit_meal_participant_path(@meal, @participant)
   end
 
