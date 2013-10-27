@@ -28,16 +28,16 @@ class MealsController < ApplicationController
     meal = Meal.find(params[:id])
     restaurant_name = Restaurant.find(meal.restaurant_id).name
     participants = meal.participants
-    leader = nil
+    leader_name = nil
     participants.each do |participant|
       if participant.payer
-        leader_name = participant.name
+        leader_name = participant.email
       end
     end
     participants.each do |participant|
       if !participant.payer
         email = participant.email
-        amount = participant.owes/100.0
+        amount = participant.owes
         send_payment_request(email, amount, leader_name, restaurant_name)
       end
     end
