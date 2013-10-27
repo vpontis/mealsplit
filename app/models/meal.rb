@@ -1,5 +1,5 @@
 class Meal < ActiveRecord::Base
-  has_one :restaurant
+  belongs_to :restaurant
   has_many :participants
 
   def next_participant_path
@@ -33,7 +33,6 @@ class Meal < ActiveRecord::Base
   def summary_path
     "/meals/#{self.id}/summary"
   end
-
 private
   def edit_meal_participant_path(meal, participant)
     "/meals/#{meal.id}/participants/#{participant.id}/edit"
