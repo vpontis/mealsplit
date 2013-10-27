@@ -6,9 +6,9 @@
   <% if !food_item.id.nil? %>
     <div>
       <strong>Food Item</strong> 
-      <%= food_item.name %>
-      <%= food_item.cost %>
-      Destroy link
+      <%= food_item.name+","%>
+      <%= number_to_currency(food_item.cost.to_f/100) %>
+      <%= link_to "Destroy", meal_participant_path(@meal, @participant), method: :delete, data: {confirm: "Sure dude?"} %>
     </div>
   <% end %>
 <% end %>
@@ -27,7 +27,7 @@
 
 <%= link_to "Next Participant >>", @meal.next_participant_path,
     class: "btn btn-primary" %>
-
+<br/>
 <p>Or choose the next participant to enter items for:</p>
 <% @meal.participants.each do |participant| %>
   <% if participant.id != @participant.id %>
