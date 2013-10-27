@@ -6,6 +6,6 @@ class UserMailer < ActionMailer::Base
   	@payment_amount = paymentAmount
   	@meal_leader = mealLeader
   	@restaurant = restaurant
-  	mail(to: @email_address, subject: 'Payment Request from '+@meal_leader)
+  	mail(to: @email_address, subject: 'Payment Request from '+@meal_leader.to_s)
   end
 end
