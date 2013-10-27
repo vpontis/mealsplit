@@ -8,7 +8,7 @@
 	<h3><%= participant.email %></h3>
 	<h5>Items:</h5>
 	<% participant.food_items.each do |item| %>
-		<p><%= item %>: <%= item.cost %></p>
+		<p><%= item %>: <%= item.cost_pretty %></p>
 	<% end %>
 	<% if !participant.payer %>
 		<h5>Total:</h5><p>$<%= participant.owes %></p>
