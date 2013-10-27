@@ -10,16 +10,19 @@
     <% @meal.participants.each do |participant| %>
       <% if !participant.id.nil? %>
         <div>
-          <span class="participant-email"><%= participant.email %></span>
+          <span class="participant-email">
+            <strong><%= "Payer:" if participant.payer == true %></strong>
+            <%= participant.email %>
+          </span>
           <span><%= link_to "They weren't there!", meal_participant_path(@meal, participant), method: :delete, data: {confirm: "Sure dude?"} %></span>
         </div>
       <% end %>
     <% end %>
 
-    <% if @meal.payer_id.nil? %>
+    <% if @meal.payer.nil? %>
       <h2>Who paid for the meal?<h2>
         <%= form_for([@meal, @new_participant], html: {role: 'form', class: 'form-group'}) do %>
-        <input type="hidden", name="payer" value="true" />
+        <input type="hidden", name="payer" value="1" />
         <div class='form-group'>
           <%= text_field_tag(:new_meal_participant, '', class: 'form-control', placeholder: 'sample@email.com') %>
         </div>
@@ -31,7 +34,7 @@
     <% else %>
       <h2>Who else was there?</h2>
       <%= form_for([@meal, @new_participant], html: {role: 'form', class: 'form-group'}) do %>
-        <input type="hidden", name="payer" value="false" />
+        <input type="hidden", name="payer" value="0" />
         <div class='form-group'>
           <%= text_field_tag(:new_meal_participant, '', class: 'form-control', placeholder: 'sample@email.com') %>
         </div>
@@ -41,7 +44,7 @@
       <% end %>
     <% end %>
 
-    <% if @meal.participants.count != 0 %>
+    <% if @meal.participants.count > 1 && !@meal.payer.nil? %>
       <br />
       <p>Done adding participants?</p>
 

@@ -28,8 +28,10 @@ class ParticipantsController < ApplicationController
       return
     end
     @new_participant = @meal.participants.build(email: params[:new_meal_participant])
-    if params[:payer]
-
+    @new_participant.save
+    if params[:payer].to_i == 1
+      @new_participant.payer = true
+      @meal.payer= @new_participant
     end
     @new_participant.save
     redirect_to meal_participants_path(@meal)
