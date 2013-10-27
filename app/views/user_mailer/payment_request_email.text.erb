@@ -4,6 +4,10 @@ Thank you for using MealSplit!
 <%= @meal_leader %> is asking for payment for your recent meal at <%= @restaurant %>.
 ------------------------------------------------------------------------------------
 
+<% items.each do |item| %>
+	<%= item.name %>: <%= item.cost_pretty %>
+<% end %>
+
 Amount: <%= number_to_currency(@payment_amount.to_f/100, :unit => "$") %>
 
 Yummm!

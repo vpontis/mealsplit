@@ -38,7 +38,8 @@ class MealsController < ApplicationController
       if !participant.payer
         email = participant.email
         amount = participant.owes
-        send_payment_request(email, amount, leader_name, restaurant_name)
+        items = participant.food_items
+        send_payment_request(email, amount, leader_name, restaurant_name, items)
       end
     end
     redirect_to root_path
@@ -58,7 +59,7 @@ class MealsController < ApplicationController
     end
 
   private
-    def send_payment_request(email, amount, leader, restaurant)
-      UserMailer.payment_request_email(email, amount, leader, restaurant).deliver
+    def send_payment_request(email, amount, leader, restaurant, items)
+      UserMailer.payment_request_email(email, amount, leader, restaurant, items).deliver
     end
 end
