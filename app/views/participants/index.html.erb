@@ -14,7 +14,7 @@
             <strong><%= "Payer:" if participant.payer == true %></strong>
             <%= participant.email %>
           </span>
-          <span><%= link_to "They weren't there!", meal_participant_path(@meal, participant), method: :delete, data: {confirm: "Sure dude?"} %></span>
+          <span><%= link_to "They weren't there!", meal_participant_path(@meal, participant), method: :delete, data: {confirm: "Are you sure?"} %></span>
         </div>
       <% end %>
     <% end %>
