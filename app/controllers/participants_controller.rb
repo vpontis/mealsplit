@@ -1,6 +1,5 @@
 class ParticipantsController < ApplicationController
   def new
-
   end
 
   def edit
@@ -29,6 +28,9 @@ class ParticipantsController < ApplicationController
       return
     end
     @new_participant = @meal.participants.build(email: params[:new_meal_participant])
+    if params[:payer]
+
+    end
     @new_participant.save
     redirect_to meal_participants_path(@meal)
   end
@@ -44,5 +46,14 @@ class ParticipantsController < ApplicationController
     @participant = @meal.participants.find(params[:id])
     @participant.destroy
     redirect_to meal_participants_path(@meal)
+  end
+
+  def destroy_food_item
+    @meal = Meal.find(params[:meal_id])
+    @participant = @meal.participants.find(params[:id])
+    @food_item = @participant.food_items.find(params[:food_item_id])
+    @participant.food_items.delete(@food_item)
+    @participant.save
+    redirect_to edit_meal_participant_path(@meal, @participant)
   end
 end

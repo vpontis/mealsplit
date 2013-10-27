@@ -1,7 +1,7 @@
 var populate_food_item_typeahead = function(restaurant_id){
   console.log(restaurant_id);
-  $('.food-item-input').typeahead('destroy');
-  $('.food-item-input').typeahead(      
+  $('#food-item-input').typeahead('destroy');
+  $('#food-item-input').typeahead(      
     {
       prefetch: '/food_item_suggestions.json?restaurant_id=' + restaurant_id,
       ttl: 0

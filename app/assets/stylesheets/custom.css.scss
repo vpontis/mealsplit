@@ -1,8 +1,25 @@
 // import original bootstrap
 @import "bootstrap";
 
+.food-item-name {
+  width: 200px;
+  display: inline-block;
+}
 
+.food-item-cost {
+  width: 60px;
+  display: inline-block;
+}
 
-.participant-label {
-  width: 150px;
+.participant-email {
+  min-width: 200px; 
+  display: inline-block;
+}
+
+input[type="text"] {
+  width: 300px;
+}
+
+input[type="submit"].form-control {
+  max-width: 300px;
 }

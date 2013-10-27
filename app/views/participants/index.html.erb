@@ -1,31 +1,58 @@
-<h1>Who ate at <%= @restaurant.name %>?</h1>
+<div class="row">
+  <div class="col-md-offset-2 col-md-8">
+    <h1>Who ate at <%= @restaurant.name %>?</h1>
 
-<p>Please list the email of who paid for the receipt and the emails of everyone at the meal.</p>
+    <p>Please list the email of who paid for the receipt and the emails of everyone at the meal.</p>
 
-<% @meal.participants.each do |participant| %>
-  <% if !participant.id.nil? %>
-    <div>
-      <strong>Meal Participant</strong> 
-      <%= participant.email %>
-      <%= link_to "Destroy", meal_participant_path(@meal, participant), method: :delete, data: {confirm: "Sure dude?"} %>
-    </div>
-  <% end %>
-<% end %>
+    <% if @meal.participants.count != 0 %>
+      <h2>Meal Participants</h2>
+    <% end %>
+    <% @meal.participants.each do |participant| %>
+      <% if !participant.id.nil? %>
+        <div>
+          <span class="participant-email"><%= participant.email %></span>
+          <span><%= link_to "They weren't there!", meal_participant_path(@meal, participant), method: :delete, data: {confirm: "Sure dude?"} %></span>
+        </div>
+      <% end %>
+    <% end %>
 
-<%= form_for([@meal, @new_participant]) do %>
-  <div>
-    <%= label_tag(:new_meal_participant, "Meal Participant", class: 'participant-label') %>
-    <%= text_field_tag(:new_meal_participant, '', placeholder: 'sample@email.com') %>
+    <% if @meal.payer_id.nil? %>
+      <h2>Who paid for the meal?<h2>
+        <%= form_for([@meal, @new_participant], html: {role: 'form', class: 'form-group'}) do %>
+        <input type="hidden", name="payer" value="true" />
+        <div class='form-group'>
+          <%= text_field_tag(:new_meal_participant, '', class: 'form-control', placeholder: 'sample@email.com') %>
+        </div>
+        <div class="form-group">
+          <%= submit_tag("Add Participant", class: 'btn btn-primary form-control') %>
+        </div>
+      <% end %>
+  
+    <% else %>
+      <h2>Who else was there?</h2>
+      <%= form_for([@meal, @new_participant], html: {role: 'form', class: 'form-group'}) do %>
+        <input type="hidden", name="payer" value="false" />
+        <div class='form-group'>
+          <%= text_field_tag(:new_meal_participant, '', class: 'form-control', placeholder: 'sample@email.com') %>
+        </div>
+        <div class="form-group">
+          <%= submit_tag("Add Participant", class: 'btn btn-primary form-control') %>
+        </div>
+      <% end %>
+    <% end %>
+
+    <% if @meal.participants.count != 0 %>
+      <br />
+      <p>Done adding participants?</p>
+
+      <%= link_to "Next Page >>", @meal.next_participant_path,
+          class: "btn btn-primary" %>
+    <% end %>
+
+    <br>
+    <br>
+    <p>Changed your mind?
+    <%= link_to "Start Over", new_meal_path,
+        class: "btn btn-sm" %></p>
   </div>
-  <div>
-    <%= submit_tag("Add Participant", class: 'btn btn-primary') %>
-  </div>
-<% end %>
-
-<% if @meal.participants.count != 0 %>
-  <br />
-  <p>Done adding participants?</p>
-
-  <%= link_to "Next Page >>", @meal.next_participant_path,
-      class: "btn btn-primary" %>
-<% end %>
+</div>
