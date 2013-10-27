@@ -8,6 +8,8 @@ VpontisEmzhangTscizzleProj3::Application.routes.draw do
 
   resources :restaurants
 
+  match '/meals/:meal_id/participants/:id/destroy_food_item', via: 'delete', to: 'participants#destroy_food_item'
+
   # test email notification
   match '/testEmail', via: 'get', to: 'meals#test_email'
 

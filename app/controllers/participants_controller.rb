@@ -45,4 +45,11 @@ class ParticipantsController < ApplicationController
     @participant.destroy
     redirect_to meal_participants_path(@meal)
   end
+
+  def destroy_food_item
+    logger.debug "I HIT THIS END POINT"
+    @meal = Meal.find(params[:meal_id])
+    @participant = @meal.participants.find(params[:id])
+    redirect_to edit_meal_participant_path(@meal, @participant)
+  end
 end
