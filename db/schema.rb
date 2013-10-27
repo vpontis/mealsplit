@@ -11,11 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 20131026215531) do
-=======
-ActiveRecord::Schema.define(version: 20131026233305) do
->>>>>>> c988a1dbb94e06e82ed641bc80e1d3f921cab3a2
 
   create_table "charges", force: true do |t|
     t.integer  "payer_id"
