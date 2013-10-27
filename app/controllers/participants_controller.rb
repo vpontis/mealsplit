@@ -64,7 +64,7 @@ private
   end
 
   def get_meal
-    @restaurant = @meal.restaurant
+    @meal = Meal.find(params[:meal_id])
     @restaurant = @meal.restaurant
   end
 end
