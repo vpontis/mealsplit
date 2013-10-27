@@ -4,7 +4,7 @@ Thank you for using MealSplit!
 <%= @meal_leader %> is asking for payment for your recent meal at <%= @restaurant %>.
 ------------------------------------------------------------------------------------
 
-<% items.each do |item| %>
+<% @items.each do |item| %>
 	<%= item.name %>: <%= item.cost_pretty %>
 <% end %>
 
