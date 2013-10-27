@@ -14,17 +14,19 @@
 
 		<h3>Participants:</h3>
 		<% @meal.participants.each do |participant| %>
-			<h4><%= participant.email %></h4>
-			<h5>Items:</h5>
-			<% participant.food_items.each do |item| %>
-				<p><%= item.name %>: <%= item.cost_pretty %></p>
-			<% end %>
-			<% if !participant.payer %>
-				<p><b>Total: <%= cents_pretty(participant.owes) %></b></p>
-				<p>Request will be sent to: <%= participant.email %>.</p>
-			<% end %>
-			<%= button_to "Edit "+participant.email+"'s Order", edit_meal_participant_path(@meal, participant),
-				{ :method => "get", :class => "btn" } %>
+			<div class="mealSummaryParticipantDetailsDiv">
+				<h4><%= participant.email %></h4>
+				<h5>Items:</h5>
+				<% participant.food_items.each do |item| %>
+					<p><%= item.name %>: <%= item.cost_pretty %></p>
+				<% end %>
+				<p><b>Total: <%= number_to_currency(participant.owes.to_f/100, :unit => "$") %></b></p>
+				<% if !participant.payer %>
+					<p>Request will be sent to: <%= participant.email %>.</p>
+				<% end %>
+				<%= button_to "Edit "+participant.email+"'s Order", edit_meal_participant_path(@meal, participant),
+					{ :method => "get", :class => "btn" } %>
+			</div>
 		<% end %>
 	</div>
 </div>

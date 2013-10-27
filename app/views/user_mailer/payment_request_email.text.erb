@@ -4,6 +4,6 @@ Thank you for using MealSplit!
 <%= @meal_leader %> is asking for payment for your recent meal at <%= @restaurant %>.
 ------------------------------------------------------------------------------------
 
-Amount: <%= @payment_amount %>
+Amount: <%= number_to_currency(@payment_amount.to_f/100, :unit => "$") %>
 
 Yummm!
