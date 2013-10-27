@@ -22,8 +22,8 @@ class ParticipantsController < ApplicationController
 
   def create
     @meal = Meal.find(params[:meal_id])
-    if params[:new_meal_participant].blank?
-      flash[:danger] = "You have to enter in an email."
+    if params[:new_meal_participant].blank? 
+      flash[:danger] = "You have to enter in a vaild email."
       redirect_to meal_participants_path(@meal)
       return
     end
