@@ -7,20 +7,20 @@ class Meal < ActiveRecord::Base
     if !participant.nil?
       edit_meal_participant_path(self, participant)
     else
-      meal_summary_path(self)
+      self.meal_summary_path
     end
   end
 
   def unprocessed_participants
     self.participants.where(processed: false)
   end
+  
+  def meal_summary_path
+    "/meals/#{self.id}/summary"
+  end
 
 private
   def edit_meal_participant_path(meal, participant)
     "/meals/#{meal.id}/participants/#{participant.id}/edit"
-  end
-
-  def meal_summary_path(meal)
-    "/meals/#{meal.id}/summary"
   end
 end

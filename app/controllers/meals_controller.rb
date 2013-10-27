@@ -20,16 +20,32 @@ class MealsController < ApplicationController
 
   def meal_summary
     @restaurant_name = cookies[:restaurant_name]
-    meal_id = params[:id]
-    @participants = Meal.find(meal_id).participants
+    @meal = Meal.find(params[:id])
   end
 
   def complete_meal
     # send a payment request to each email in the list of participants
+    meal = Meal.find(params[:id])
+    restaurant_name = Restaurant.find(meal.restaurant_id).name
+    participants = meal.participants
+    leader = nil
+    participants.each do |participant|
+      if participant.payer
+        leader_name = participant.name
+      end
+    end
+    participants.each do |participant|
+      if !participant.payer
+        email = participant.email
+        amount = participant.owes/100.0
+        send_payment_request(email, amount, leader_name, restaurant_name)
+      end
+    end
     redirect_to root_path
   end
 
   def index
+    @meals = Meal.all
   end
 
 
