@@ -72,7 +72,7 @@ Restaurant.find_by(name: 'Flour Bakery and Cafe').food_items.create(name: 'Smoke
 Restaurant.find_by(name: 'Flour Bakery and Cafe').food_items.create(name: 'Fresh Mozzarella and Tomato', cost: 795)
 Restaurant.find_by(name: 'Flour Bakery and Cafe').food_items.create(name: 'Hommade Hummus', cost: 795)
 Restaurant.find_by(name: 'Flour Bakery and Cafe').food_items.create(name: 'Applewood-Smoked Bacon', cost: 795)
-Restaurant.find_by(name: 'Flour Bakery and Cafe').food_items.create(name: 'Curried Yuna', cost: 795)
+Restaurant.find_by(name: 'Flour Bakery and Cafe').food_items.create(name: 'Curried Tuna', cost: 795)
 Restaurant.find_by(name: 'Flour Bakery and Cafe').food_items.create(name: 'Roasted Chicken', cost: 795)
 Restaurant.find_by(name: 'Flour Bakery and Cafe').food_items.create(name: 'Roast Beef', cost: 795)
 Restaurant.find_by(name: 'Flour Bakery and Cafe').food_items.create(name: 'Roasted Lamb', cost: 795)
