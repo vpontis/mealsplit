@@ -1,6 +1,5 @@
 class ParticipantsController < ApplicationController
   def new
-
   end
 
   def edit
@@ -47,9 +46,11 @@ class ParticipantsController < ApplicationController
   end
 
   def destroy_food_item
-    logger.debug "I HIT THIS END POINT"
     @meal = Meal.find(params[:meal_id])
     @participant = @meal.participants.find(params[:id])
+    @food_item = @participant.food_items.find(params[:food_item_id])
+    @participant.food_items.delete(@food_item)
+    @participant.save
     redirect_to edit_meal_participant_path(@meal, @participant)
   end
 end

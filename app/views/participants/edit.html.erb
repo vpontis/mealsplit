@@ -2,21 +2,24 @@
 
 <h1>Enter in Food Items for <%= @participant.email %></h1>
 
+<% if @participant.food_items.count != 0 %>
+  <h2>Your current tally</h2>
+<% end %>
 <% @participant.food_items.each do |food_item| %>
   <% if !food_item.id.nil? %>
-    <div>
-      <strong>Food Item</strong> 
-      <%= food_item.name+":"%>
-      <%= number_to_currency(food_item.cost.to_f/100) %>
-      <%= link_to "Destroy", destroy_food_item_path(@meal, @participant), method: :delete, data: {confirm: "Sure dude?"} %>
+
+    <div class="food-item">
+      <span class="food-item-name"><%= food_item.name%></span>
+      <span class="food-item-cost"><%= number_to_currency(food_item.cost.to_f/100) %></span>
+      <%= link_to "I didn't get this!", destroy_food_item_path(@meal, @participant, food_item), method: :delete, data: {confirm: "Are you sure you didn't eat a #{food_item.name}?"} %>
     </div>
   <% end %>
 <% end %>
 
+<h2>What else did you get?</h2>
 <%= form_for([@meal, @participant]) do |f| %>
   <div>
-    <%= label_tag(:new_food_item, "Food Item", class: 'food-item-label') %>
-    <%= text_field_tag(:new_food_item, "", class: "food-item-input") %>
+    <%= text_field_tag(:new_food_item, "", class: "food-item-input", placeholder: "A yummy...") %>
   </div>
   <div>
     <%= submit_tag("Add Food Item", class: 'btn btn-primary') %>
@@ -25,8 +28,13 @@
 
 <br />
 
-<%= link_to "Next Participant >>", @meal.next_participant_path,
+<% if @meal.unprocessed_participants.empty? %>
+  <%= link_to "Meal Summary and Confirmation", @meal.summary_path, class: "btn btn-primary" %>
+<% else %>  
+  <%= link_to "Next Participant >>", @meal.next_participant_path,
     class: "btn btn-primary" %>
+<% end %>
+
 <br/>
 <p>Or choose the next participant to enter items for:</p>
 <% @meal.participants.each do |participant| %>
