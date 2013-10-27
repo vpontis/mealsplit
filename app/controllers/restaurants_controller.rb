@@ -18,11 +18,13 @@ class RestaurantsController < ApplicationController
   end
 
   def food_item_suggestions
+    logger.debug "HELLLOOO"
+    logger.debug params
     restaurant = Restaurant.find(params[:restaurant_id]) unless params[:restaurant_id].nil?
     if restaurant.nil?
       @suggestions = []
     else
-      @suggestions = restaurant.food_items
+      @suggestions = restaurant.food_items.all
       @suggestions.map! { |s| s.name.gsub("'", "") }
     end
     render json: @suggestions

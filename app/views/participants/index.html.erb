@@ -1,0 +1,31 @@
+<h1>Who ate at <%= @restaurant.name %>?</h1>
+
+<p>Please list the email of who paid for the receipt and the emails of everyone at the meal.</p>
+
+<% @meal.participants.each do |participant| %>
+  <% if !participant.id.nil? %>
+    <div>
+      <strong>Meal Participant</strong> 
+      <%= participant.email %>
+      <%= link_to "Destroy", meal_participant_path(@meal, participant), method: :delete, data: {confirm: "Sure dude?"} %>
+    </div>
+  <% end %>
+<% end %>
+
+<%= form_for([@meal, @new_participant]) do %>
+  <div>
+    <%= label_tag(:new_meal_participant, "Meal Participant", class: 'participant-label') %>
+    <%= text_field_tag(:new_meal_participant, '', placeholder: 'sample@email.com') %>
+  </div>
+  <div>
+    <%= submit_tag("Add Participant", class: 'btn btn-primary') %>
+  </div>
+<% end %>
+
+<% if @meal.participants.count != 0 %>
+  <br />
+  <p>Done adding participants?</p>
+
+  <%= link_to "Next Page >>", @meal.next_participant_path,
+      class: "btn btn-primary" %>
+<% end %>

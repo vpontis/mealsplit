@@ -1,9 +1,8 @@
 var populate_restaurant_typeahead = function(){
   $('#restaurant-name-input').typeahead(      
     {
-      name: 'restaurant list',
       prefetch: '/restaurant_suggestions.json',
-      ttl: 8640000
+      ttl: 0,
     }
   );
   return 5;

@@ -8,11 +8,12 @@ VpontisEmzhangTscizzleProj3::Application.routes.draw do
 
   resources :restaurants
 
-  match '/restaurant_choice', via: 'post', to: 'meals#restaurant_choice'
-  match '/get_participants', via: 'get', to: 'meals#get_participants'
-  match '/participants_list', via: 'post', to: 'meals#participants_list'
-  match 'meals/:id/meal_summary', via: 'get', to: 'meals#meal_summary'
-  match 'meals/:id/complete_meal', via: 'post', to: 'meals#complete_meal'
+  # test email notification
+  match '/testEmail', via: 'get', to: 'meals#test_email'
+
+  match '/meal/:id/summary', via: 'get', to: 'meals#meal_summary'
+  match '/meal/:id/complete_meal', via: 'post', to: 'meals#complete_meal'
+
 
   match '/restaurant_suggestions.json', via: 'get', to: 'restaurants#restaurant_suggestions'
   match '/food_item_suggestions.json', via: 'get', to: 'restaurants#food_item_suggestions'

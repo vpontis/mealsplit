@@ -1,9 +1,10 @@
 var populate_food_item_typeahead = function(restaurant_id){
-  $('.food_item_input').typeahead(      
+  console.log(restaurant_id);
+  $('.food-item-input').typeahead('destroy');
+  $('.food-item-input').typeahead(      
     {
-      name: 'food item list',
       prefetch: '/food_item_suggestions.json?restaurant_id=' + restaurant_id,
-      ttl: 8640000
+      ttl: 0
     }
   );
 };
