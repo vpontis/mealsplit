@@ -29,10 +29,6 @@ class Meal < ActiveRecord::Base
       meal_payer
     end
   end
-  
-  def summary_path
-    "/meals/#{self.id}/summary"
-  end
 private
   def edit_meal_participant_path(meal, participant)
     "/meals/#{meal.id}/participants/#{participant.id}/edit"

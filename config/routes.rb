@@ -10,7 +10,6 @@ VpontisEmzhangTscizzleProj3::Application.routes.draw do
 
   match '/meals/:meal_id/participants/:id/destroy_food_item/:food_item_id', via: 'delete', to: 'participants#destroy_food_item'
 
-  match '/meals/:id/summary', via: 'get', to: 'meals#meal_summary'
   match '/meals/:id/complete_meal', via: 'post', to: 'meals#complete_meal'
 
   match 'meals/:id/tax_and_tip', via: 'get', to: 'meals#tax_and_tip'

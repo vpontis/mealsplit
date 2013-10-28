@@ -1,8 +1,6 @@
 <% provide(:onload_js, "setup_tip_buttons();") %>
 
 <div class="container">
-
-
   <div class="row" >
     <div id="meal-summary" class="col-md-6 col-md-offset-3">
       <h1>Summary for meal at <%= @restaurant.name %></h1>
@@ -14,7 +12,7 @@
               <%= "Payer: " if participant.payer == true %>
               <%= participant.email %>
             </span> 
-            <%= link_to 'edit details', edit_meal_participant_path(@meal, @participant) %>
+            <%= link_to 'edit details', edit_meal_participant_path(@meal, participant) %>
           </div>
           <% participant.food_items.each do |item| %>
             <div>
@@ -22,7 +20,6 @@
               <span class="cost"><%= item.cost_pretty %></span>
             </div>
           <% end %>
-
           <hr />
 
           <div class="subtotal">
