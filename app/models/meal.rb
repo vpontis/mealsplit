@@ -1,4 +1,4 @@
-# primary author: Em
+# primary author: Vic
 class Meal < ActiveRecord::Base
   belongs_to :restaurant
   has_many :participants
