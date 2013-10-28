@@ -52,7 +52,7 @@ class MealsController < ApplicationController
 
   private
     def send_leader_summary(meal)
-      UserMailer.leader_summary_email(meal)
+      UserMailer.leader_summary_email(meal).deliver
     end
 
     def meal_complete
