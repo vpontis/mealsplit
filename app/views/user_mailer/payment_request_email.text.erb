@@ -1,13 +1,17 @@
 Thank you for using MealSplit!
 ==============================
 
-<%= @meal_leader %> is asking for payment for your recent meal at <%= @restaurant %>.
+<%= @meal_leader %> is asking for payment for your recent meal at <%= @restaurant_name %>.
 ------------------------------------------------------------------------------------
 
 <% @items.each do |item| %>
 	<%= item.name %>: <%= item.cost_pretty %>
 <% end %>
 
-Amount: <%= number_to_currency(@payment_amount.to_f/100, :unit => "$") %>
+Item Total: <%= number_to_currency(@items_total.to_f/100, :unit => "$") %>
+Tax: <%= number_to_currency(@tax.to_f/100, :unit => "$") %>
+<% tip = (@tip_percent.to_f/100)*(@items_total.to_f/100) %>
+Tip: <%= number_to_currency(tip, :unit => "$") %>
+Total: <%= number_to_currency(@items_total.to_f/100+@tax.to_f/100+tip, :unit => "$") %>
 
 Yummm!
