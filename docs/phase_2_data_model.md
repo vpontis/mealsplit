@@ -1,4 +1,4 @@
-MealSplit - Phase 2 Design Doc
+MealSplit - Phase 2 Data Model
 ==============================
 Authors
 -------
