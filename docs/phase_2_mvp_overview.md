@@ -4,7 +4,7 @@ Authors
 -------
 + Victor Pontis
 + Tyler Singer-Clark
-+ Emily Zhang
++ Emily Zhang
 
 Instructions for Testing the MVP
 --------------------------------
