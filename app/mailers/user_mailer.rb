@@ -12,4 +12,9 @@ class UserMailer < ActionMailer::Base
   	@tip_percent = meal.tip_percent
   	mail(to: @email_address, subject: 'Payment Request from '+@meal_leader)
   end
+
+  def leader_summary_email(meal)
+    @email_address = Participant.find(meal.payer_id).email
+    @participants = meal.participants
+  end
 end

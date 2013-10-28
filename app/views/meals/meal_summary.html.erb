@@ -8,7 +8,6 @@
 <div id="mealSummaryDetailsRow" class="row">
 	<div id="mealSummaryDetailsColumn" class="col-md-6 col-md-offset-3">
 
-
 		<h3>Restaurant:</h3>
 		<p><%= @restaurant.name %></p>
 
@@ -23,7 +22,7 @@
 				<p>Items Total: <%= number_to_currency(participant.subtotal.to_f/100, :unit => "$") %></p>
 				<p>Tax: <%= number_to_currency(participant.tax.to_f/100, :unit => "$") %></p>
 				<% tip = (@meal.tip_percent.to_f/100)*(participant.subtotal.to_f/100) %>
-				<p>Tip: <%= number_to_currency(tip, :unit => "$") %>
+				<p>Tip: <%= number_to_currency(tip, :unit => "$") %></p>
 				<p><b>Total: <%= number_to_currency(participant.total.to_f/100+tip) %></b></p>
 				<% if !participant.payer %>
 					<p>Request will be sent to: <%= participant.email %>.</p>
