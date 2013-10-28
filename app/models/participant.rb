@@ -7,10 +7,12 @@ class Participant < ActiveRecord::Base
   end
 
   def tax
-  	0.065*subtotal
+    # all of the restaurants we have loaded now have a tax rate of 6.5%
+    # in the future we will be associating a tax with a restaurant
+    0.065*subtotal
   end
 
   def total
-  	subtotal+tax
+    subtotal+tax
   end
 end

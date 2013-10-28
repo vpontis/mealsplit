@@ -22,4 +22,15 @@ var add_meal_participant = function() {
     .val('');
   $(new_meal_participant).insertBefore('#add-participant-button');
   return new_meal_participant;
-}
+};
+
+var setup_tip_buttons = function(){
+ // make button toggles update hidden field
+  $('#tip-percent-input .btn').on('click', function(event){
+    event.preventDefault();
+    $(this).addClass('active')
+    $(this).siblings().removeClass('active');
+    var tip_amount = $(this).attr('data-value');
+    $('#meal_tip_percent').attr('value', tip_amount);
+  });
+};
