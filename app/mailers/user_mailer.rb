@@ -5,14 +5,12 @@ class UserMailer < ActionMailer::Base
     @meal = meal
   	@meal_leader = @meal.payer.email
     @participant = participant
-  	mail(to: participant.email, subject: 'Payment Request from '+@meal_leader)
+  	mail(to: participant.email, subject: "Payment Request from #{@meal_leader}")
   end
 
   def leader_summary_email(meal)
-    @email_address = Participant.find(meal.payer_id).email
-    @restaurant_name = Restaurant.find(meal.restaurant_id)
     @meal = meal
-    @participants = meal.participants
-    mail(to: @email_address, subject: 'Meal Summary from '+@restaurant_name.to_s)
+    @email_address = @meal.payer.email
+    mail(to: @email_address, subject: "Meal Summary from #{@meal.restaurant.name}")
   end
 end

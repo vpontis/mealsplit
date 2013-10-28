@@ -5,19 +5,41 @@
   </head>
   <body>
     <h1>Thank you for using MealSplit!</h1>
-    <h3>Summary of your recent meal at <%= @restaurant_name %>:</h3>
-    <% @participants.each do |participant| %>
-    	<br>
-      <h5><%= participant.email %></h5>
+    <h3>Summary of your recent meal at <%= @meal.restaurant.name %>:</h3>
+
+    <% @meal.participants.each do |participant| %>
+      <%= participant.email %>
       <% participant.food_items.each do |item| %>
-  		  <p><%= item.name %>: <%= item.cost_pretty %></p>
-  	  <% end %>
-      <p>Item Total: <%= number_to_currency(participant.subtotal.to_f/100, :unit => "$") %></p>
-      <p>Tax: <%= number_to_currency(participant.tax.to_f/100, :unit => "$") %></p>
-      <% tip = (@meal.tip_percent.to_f/100)*(participant.subtotal.to_f/100) %>
-      <p>Tip: <%= number_to_currency(tip, :unit => "$") %></p>
-      <p><b>Total: <%= number_to_currency(participant.subtotal.to_f/100+participant.tax.to_f/100+tip, :unit => "$") %></b></p>
-      <br>
+        <div>
+          <span class="item"><%= item.name %></span>
+          <span class="cost"><%= item.cost_pretty %></span>
+        </div>
+      <% end %>
+
+      <hr />
+
+      <div class="subtotal">
+        <span class="item">Subtotal:</span> 
+        <span class="cost"><%= number_to_currency(participant.subtotal.to_f/100) %></span>
+      </div>
+      <div class="subtotal">
+        <span class="item">Tax: </span>
+        <span class="cost"><%= number_to_currency(participant.tax.to_f/100) %></span>
+      </div>
+      <div class="subtotal">
+        <span class="item">Tip: </span>
+        <span class="cost"><%= number_to_currency(participant.tip(@meal.tip_percent)) %></span>
+      </div>
+
+      <hr />
+      <div class="total">
+        <span class="item">Total:</span>
+        <span class="cost"><%= number_to_currency(participant.total.to_f/100 + participant.tip(@meal.tip_percent)) %></span>
+      </div>        
+
+      <br />
+      <br />
+
     <% end %>
     Yummy yummy!
   </body>
