@@ -1,3 +1,4 @@
+# primary author: Em
 class Meal < ActiveRecord::Base
   belongs_to :restaurant
   has_many :participants

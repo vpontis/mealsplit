@@ -1,3 +1,4 @@
+// primary author: Vic
 var populate_restaurant_typeahead = function(){
   $('#restaurant-name-input').typeahead(      
     {

@@ -1,3 +1,4 @@
+// primary author: Vic
 var populate_food_item_typeahead = function(restaurant_id){
   console.log(restaurant_id);
   $('#food-item-input').typeahead('destroy');
