@@ -1,3 +1,4 @@
+# primary author: Vic
 class MealsController < ApplicationController
   before_filter :meal_complete,    only: [:show]
 

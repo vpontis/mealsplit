@@ -1,3 +1,4 @@
+# primary author: Vic
 class RestaurantsController < ApplicationController
   def new
     @restaurant = Restaurant.new

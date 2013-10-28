@@ -1,3 +1,4 @@
+# primary author: Vic
 class ParticipantsController < ApplicationController
   before_filter :get_meal_and_participant, only: [:edit, :update, :destroy, :destroy_food_item, :create]
   before_filter :get_meal,                 only: [:index]

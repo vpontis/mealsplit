@@ -1,3 +1,4 @@
+# primary author: Ty
 class UserMailer < ActionMailer::Base
   default from: "MealSplit"
 
