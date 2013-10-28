@@ -1,42 +1,51 @@
 <% provide(:onload_js, "setup_tip_buttons();") %>
 
-<div id="mealSummaryContainer" class="container">
+<div class="container">
 
-  <div id="mealSummaryHeaderRow" class="row">
-    <div id="mealSummaryHeaderColumn" class="col-md-12">
-      <h1>Confirm Meal Details</h1>
-    </div>
-  </div>
-  <div id="mealSummaryDetailsRow" class="row">
-    <div id="mealSummaryDetailsColumn" class="col-md-6 col-md-offset-3">
-      <h3>Restaurant:</h3>
-      <p><%= @restaurant.name %></p>
 
-      <h3>Participants:</h3>
+  <div class="row" >
+    <div id="meal-summary" class="col-md-6 col-md-offset-3">
+      <h1>Summary for meal at <%= @restaurant.name %></h1>
+
       <% @meal.participants.each do |participant| %>
-        <div class="mealSummaryParticipantDetailsDiv">
-          <h4><%= participant.email %></h4>
-          <h5>Items:</h5>
+        <div class="participant-details">
+          <div>
+            <span class="email">
+              <%= "Payer: " if participant.payer == true %>
+              <%= participant.email %>
+            </span> 
+            <%= link_to 'edit details', edit_meal_participant_path(@meal, @participant) %>
+          </div>
           <% participant.food_items.each do |item| %>
-            <p><%= item.name %>: <%= item.cost_pretty %></p>
+            <div>
+              <span class="item"><%= item.name %></span>
+              <span class="cost"><%= item.cost_pretty %></span>
+            </div>
           <% end %>
-          <p>Items Total: <%= number_to_currency(participant.subtotal.to_f/100, :unit => "$") %></p>
-          <p>Tax: <%= number_to_currency(participant.tax.to_f/100, :unit => "$") %></p>
-          <% tip = (@meal.tip_percent.to_f/100)*(participant.subtotal.to_f/100) %>
-          <p>Tip: <%= number_to_currency(tip, :unit => "$") %>
-          <p><b>Total: <%= number_to_currency(participant.total.to_f/100+tip) %></b></p>
-          <% if !participant.payer %>
-            <p>Request will be sent to: <%= participant.email %>.</p>
-          <% end %>
-          <%= button_to "Edit "+participant.email+"'s Order", edit_meal_participant_path(@meal, participant),
-            { :method => "get", :class => "btn" } %>
+
+          <hr />
+
+          <div class="subtotal">
+            <span class="item">Subtotal:</span> 
+            <span class="cost"><%= number_to_currency(participant.subtotal.to_f/100) %></span>
+          </div>
+          <div class="subtotal">
+            <span class="item">Tax: </span>
+            <span class="cost"><%= number_to_currency(participant.tax.to_f/100) %></span>
+          </div>
+
+          <hr />
+          <div class="total">
+            <span class="item">Total before tip:</span>
+            <span class="cost"><%= number_to_currency(participant.total.to_f/100) %></span>
+          </div>        
         </div>
       <% end %>
     </div>
   </div>
 
-  <div id="mealSummarySubmitRow" class="row">
-    <div id="mealSummarySubmitColumn" class="col-md-6 col-md-offset-3">
+  <div class="row">
+    <div class="col-md-6 col-md-offset-3">
       <%= form_tag(meal_path+"/complete_meal", html: {role: 'form', class: 'form-group'}, method: "post") do %>
         <div class="form-group">
           <%= label_tag(:tip_percent) %>
