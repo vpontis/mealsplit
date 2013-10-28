@@ -50,5 +50,11 @@
     <h2>Manage participants</h2>
     <p>Did you forget that Jim was there? Or did Susan not order anything? Go back to the participant management page to update who was at the meal.</p>
     <%= link_to "Back to participant management", meal_participants_path(@meal), class: "btn btn-default" %>
+    <% if @meal.unprocessed_participants.empty? %>
+      <h2>Meal Summary Page</h2>
+      <p>On the meal summary page you can go over the charges, set the tip then send out emails.</p>
+      <%= link_to "Summary Page", meal_path(@meal), class: "btn btn-default" %>
+    <% end %>
+
   </div>
 </div>
