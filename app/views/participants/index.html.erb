@@ -39,7 +39,7 @@
           <%= text_field_tag(:new_meal_participant, '', class: 'form-control', placeholder: 'sample@email.com') %>
         </div>
         <div class="form-group">
-          <%= submit_tag("Add Participant", class: 'btn btn-primary form-control') %>
+          <%= submit_tag("Add participant", class: 'btn btn-primary form-control') %>
         </div>
       <% end %>
     <% end %>
@@ -48,7 +48,7 @@
       <br />
       <p>Done adding participants?</p>
 
-      <%= link_to "Next Page >>", edit_meal_participant_path(@meal, @meal.participants.first),
+      <%= link_to "Begin entering food items >>", edit_meal_participant_path(@meal, @meal.participants.first),
           class: "btn btn-primary" %>
     <% else %>
       <p>To move on you need to specify who paid and have at least two participants. You didn't eat alone, did you?</p>

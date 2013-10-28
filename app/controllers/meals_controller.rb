@@ -1,5 +1,5 @@
 class MealsController < ApplicationController
-  before_action :restaurant_chosen, only: [:get_participants, :participants_list] 
+  before_filter :meal_complete,    only: [:show]
 
   def new
     @meal = Meal.new
@@ -13,7 +13,7 @@ class MealsController < ApplicationController
   def create
     restaurant = Restaurant.find_by(name: params[:restaurant_name])
     if restaurant.nil?
-      flash[:danger] = "You need to choose the name of an existing restaurant."
+      flash[:danger] = "You need to choose the name of a restaurant in the database. Try Chipotle or Flour."
       redirect_to new_meal_path
     else
       @meal = Meal.new
@@ -26,11 +26,11 @@ class MealsController < ApplicationController
   def tax_and_tip
   end
 
-  def complete_meal
+  def update
     # send a payment request to each email in the list of participants
     meal = Meal.find(params[:id])
-    participants = meal.participants
-    participants.each do |participant|
+    meal.tip_percent = params[:meal_tip_percent].to_i
+    meal.participants.each do |participant|
       if !participant.payer
         send_payment_request(participant, meal)
       elsif participant.payer
@@ -44,22 +44,22 @@ class MealsController < ApplicationController
     @meals = Meal.all
   end
 
-
-  private
-    def restaurant_chosen
-      if cookies[:restaurant_name].nil? || cookies[:restaurant_id].nil?
-        flash[:danger] = "You need to choose a restaurant before you choose participants."
-        redirect_to root_path
-      end
-    end
-
   private
     def send_payment_request(participant, meal)
       UserMailer.payment_request_email(participant, meal).deliver
     end  
 
+<<<<<<< HEAD
   private
     def send_leader_summary(meal)
       UserMailer.leader_summary_email(meal)
+=======
+    def meal_complete
+      @meal = Meal.find(params[:id])
+      if @meal.unprocessed_participants.count != 0 || @meal.participants.count == 0
+        flash[:danger] = "All of the participants must have a food item before you can view the meal summary."
+        redirect_to meal_participants_path(@meal)
+      end
+>>>>>>> 1c9eaf9f8933b58b996ff25e7833b47133a51ceb
     end
 end

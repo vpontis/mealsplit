@@ -18,7 +18,7 @@
       <% end %>
     <% end %>
 
-    <h2>What else did you get?</h2>
+    <h2>What did you get?</h2>
     <%= form_for([@meal, @participant], html: {class: "form-group", role: "form"}) do |f| %>
       <div class="form-group">
         <%= text_field_tag(:new_food_item, "", id: "food-item-input", class: "form-control", placeholder: "A yummy...") %>
@@ -37,10 +37,6 @@
       <%= link_to "Next Participant >>", @meal.next_participant_path,
         class: "btn btn-primary" %>
     <% end %>
-
-    <p>Changed your mind?
-    <%= link_to "Start Over", new_meal_path,
-        class: "btn btn-sm" %></p>
   </div>
 
   <div class="col-md-4">
@@ -54,5 +50,11 @@
     <h2>Manage participants</h2>
     <p>Did you forget that Jim was there? Or did Susan not order anything? Go back to the participant management page to update who was at the meal.</p>
     <%= link_to "Back to participant management", meal_participants_path(@meal), class: "btn btn-default" %>
+    <% if @meal.unprocessed_participants.empty? %>
+      <h2>Meal Summary Page</h2>
+      <p>On the meal summary page you can go over the charges, set the tip then send out emails.</p>
+      <%= link_to "Summary Page", meal_path(@meal), class: "btn btn-default" %>
+    <% end %>
+
   </div>
 </div>
