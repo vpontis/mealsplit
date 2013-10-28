@@ -1,3 +1,4 @@
+# primary authors: all
 VpontisEmzhangTscizzleProj3::Application.routes.draw do
   root 'static_pages#home'
 

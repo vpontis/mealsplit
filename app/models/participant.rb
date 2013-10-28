@@ -1,3 +1,4 @@
+# primary author: Ty
 class Participant < ActiveRecord::Base
   has_and_belongs_to_many :food_items
   validates_email_format_of :email
