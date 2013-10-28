@@ -4,7 +4,6 @@ VpontisEmzhangTscizzleProj3::Application.routes.draw do
 
   resources :meals do
     resources :participants
-    resources :charges
   end
 
   resources :restaurants
@@ -15,6 +14,7 @@ VpontisEmzhangTscizzleProj3::Application.routes.draw do
 
   match '/restaurant_suggestions.json', via: 'get', to: 'restaurants#restaurant_suggestions'
   match '/food_item_suggestions.json', via: 'get', to: 'restaurants#food_item_suggestions'
+  match '/thank_you', via: 'get', to: 'static_pages#thank_you'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

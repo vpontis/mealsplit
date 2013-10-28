@@ -39,7 +39,7 @@ class MealsController < ApplicationController
         send_leader_summary(meal)
       end
     end
-    redirect_to root_path
+    redirect_to '/thank_you'
   end
 
   def index
