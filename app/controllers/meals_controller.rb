@@ -33,6 +33,8 @@ class MealsController < ApplicationController
     participants.each do |participant|
       if !participant.payer
         send_payment_request(participant, meal)
+      elsif participant.payer
+        send_leader_summary(meal)
       end
     end
     redirect_to root_path
@@ -55,4 +57,9 @@ class MealsController < ApplicationController
     def send_payment_request(participant, meal)
       UserMailer.payment_request_email(participant, meal).deliver
     end  
+
+  private
+    def send_leader_summary(meal)
+      UserMailer.leader_summary_email(meal)
+    end
 end

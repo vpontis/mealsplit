@@ -12,8 +12,6 @@ VpontisEmzhangTscizzleProj3::Application.routes.draw do
 
   match '/meals/:id/complete_meal', via: 'post', to: 'meals#complete_meal'
 
-  match 'meals/:id/tax_and_tip', via: 'get', to: 'meals#tax_and_tip'
-
   match '/restaurant_suggestions.json', via: 'get', to: 'restaurants#restaurant_suggestions'
   match '/food_item_suggestions.json', via: 'get', to: 'restaurants#food_item_suggestions'
 
