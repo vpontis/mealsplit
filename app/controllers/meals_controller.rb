@@ -34,6 +34,8 @@ class MealsController < ApplicationController
     meal.participants.each do |participant|
       if !participant.payer
         send_payment_request(participant, meal)
+      elsif participant.payer
+        send_leader_summary(meal)
       end
     end
     redirect_to root_path
@@ -48,11 +50,8 @@ class MealsController < ApplicationController
       UserMailer.payment_request_email(participant, meal).deliver
     end  
 
-    def meal_complete
-      @meal = Meal.find(params[:id])
-      if @meal.unprocessed_participants.count != 0 || @meal.participants.count == 0
-        flash[:danger] = "All of the participants must have a food item before you can view the meal summary."
-        redirect_to meal_participants_path(@meal)
-      end
+  private
+    def send_leader_summary(meal)
+      UserMailer.leader_summary_email(meal)
     end
 end
