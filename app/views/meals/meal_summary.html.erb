@@ -10,7 +10,7 @@
 
 
 		<h3>Restaurant:</h3>
-		<p><%= @restaurant_name %></p>
+		<p><%= @restaurant.name %></p>
 
 		<h3>Participants:</h3>
 		<% @meal.participants.each do |participant| %>
@@ -20,7 +20,11 @@
 				<% participant.food_items.each do |item| %>
 					<p><%= item.name %>: <%= item.cost_pretty %></p>
 				<% end %>
-				<p><b>Total: <%= number_to_currency(participant.owes.to_f/100, :unit => "$") %></b></p>
+				<p>Items Total: <%= number_to_currency(participant.subtotal.to_f/100, :unit => "$") %></p>
+				<p>Tax: <%= number_to_currency(participant.tax.to_f/100, :unit => "$") %></p>
+				<% tip = (@meal.tip_percent.to_f/100)*(participant.subtotal.to_f/100) %>
+				<p>Tip: <%= number_to_currency(tip, :unit => "$") %>
+				<p><b>Total: <%= number_to_currency(participant.total.to_f/100+tip) %></b></p>
 				<% if !participant.payer %>
 					<p>Request will be sent to: <%= participant.email %>.</p>
 				<% end %>

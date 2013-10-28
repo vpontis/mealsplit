@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131027202051) do
+ActiveRecord::Schema.define(version: 20131027232259) do
 
   create_table "charges", force: true do |t|
     t.integer  "payer_id"
@@ -39,6 +39,7 @@ ActiveRecord::Schema.define(version: 20131027202051) do
     t.integer  "payer_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "tip_percent",   default: 15
   end
 
   create_table "participants", force: true do |t|

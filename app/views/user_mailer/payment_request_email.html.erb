@@ -5,11 +5,15 @@
   </head>
   <body>
     <h1>Thank you for using MealSplit!</h1>
-    <h3><b><%= @meal_leader %></b> is asking for payment for your recent meal at <b><%= @restaurant %>.</b></h3>
+    <h3><b><%= @meal_leader %></b> is asking for payment for your recent meal at <b><%= @restaurant_name %>.</b></h3>
     <% @items.each do |item| %>
-		<p><%= item.name %>: <%= item.cost_pretty %></p>
-	<% end %>
-    <p>Total: <b><%= number_to_currency(@payment_amount.to_f/100, :unit => "$") %></b></p>
+		  <p><%= item.name %>: <%= item.cost_pretty %></p>
+	  <% end %>
+    <p>Item Total: <%= number_to_currency(@items_total.to_f/100, :unit => "$") %></p>
+    <p>Tax: <%= number_to_currency(@tax.to_f/100, :unit => "$") %></p>
+    <% tip = (@tip_percent.to_f/100)*(@items_total.to_f/100) %>
+    <p>Tip: <%= number_to_currency(tip, :unit => "$") %></p>
+    <p><b>Total: <%= number_to_currency(@items_total.to_f/100+@tax.to_f/100+tip, :unit => "$") %></b></p>
     <h4>Yum Yum!</h4>
   </body>
 </html>
