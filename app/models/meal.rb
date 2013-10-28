@@ -12,7 +12,7 @@ class Meal < ActiveRecord::Base
   end
 
   def unprocessed_participants
-    self.participants.where(processed: false)
+    self.participants.select {|participant| participant.food_items.count==0}
   end
 
   def payer=(participant)

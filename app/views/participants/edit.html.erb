@@ -18,7 +18,7 @@
       <% end %>
     <% end %>
 
-    <h2>What else did you get?</h2>
+    <h2>What did you get?</h2>
     <%= form_for([@meal, @participant], html: {class: "form-group", role: "form"}) do |f| %>
       <div class="form-group">
         <%= text_field_tag(:new_food_item, "", id: "food-item-input", class: "form-control", placeholder: "A yummy...") %>
@@ -37,10 +37,6 @@
       <%= link_to "Next Participant >>", @meal.next_participant_path,
         class: "btn btn-primary" %>
     <% end %>
-
-    <p>Changed your mind?
-    <%= link_to "Start Over", new_meal_path,
-        class: "btn btn-sm" %></p>
   </div>
 
   <div class="col-md-4">
