@@ -12,6 +12,11 @@ class Participant < ActiveRecord::Base
     0.065*subtotal
   end
 
+  def tip(percent) 
+    tip_percentage = percent.to_f/100
+    tip_percentage * subtotal.to_f/100
+  end
+
   def total
     subtotal+tax
   end

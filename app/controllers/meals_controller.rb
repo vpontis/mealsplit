@@ -29,7 +29,8 @@ class MealsController < ApplicationController
   def update
     # send a payment request to each email in the list of participants
     meal = Meal.find(params[:id])
-    meal.tip_percent = params[:meal_tip_percent].to_i
+    meal.tip_percent = params[:meal][:tip_percent].to_i
+    meal.save
     meal.participants.each do |participant|
       if !participant.payer
         send_payment_request(participant, meal)
