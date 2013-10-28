@@ -9,7 +9,6 @@ gem 'validates_email_format_of', :git => 'git://github.com/alexdunae/validates_e
 group :development, :test do
   # Use sqlite3 as the database for Active Record
   gem 'sqlite3'
-  gem 'faker'
 end
 
 group :production, :staging do
