@@ -17,7 +17,8 @@ class MealsController < ApplicationController
       flash[:danger] = "You need to choose the name of a restaurant in the database. Try Chipotle or Flour."
       redirect_to new_meal_path
     else
-      @meal = Meal.new(restaurant: restaurant).save
+      @meal = Meal.new(restaurant: restaurant)
+      @meal.save
       redirect_to meal_participants_path(@meal)
     end
   end
