@@ -35,8 +35,8 @@
     <% if @meal.unprocessed_participants.empty? %>
       <%= link_to "Meal Summary and Confirmation", meal_path(@meal), class: "btn btn-primary" %>
     <% else %>  
-      <%= link_to "Next Participant >>", @meal.next_participant_path,
-        class: "btn btn-primary" %>
+      <%= link_to "Next Participant >>", edit_meal_participant_path(@meal, @meal.next_participant),
+        class: "btn btn-success" %>
     <% end %>
   </div>
 

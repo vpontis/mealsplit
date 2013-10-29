@@ -9,8 +9,6 @@ class Participant < ActiveRecord::Base
   end
 
   def tax
-    # all of the restaurants we have loaded now have a tax rate of 6.5%
-    # in the future we will be associating a tax with a restaurant
     self.meal.tax * subtotal
   end
 
