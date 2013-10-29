@@ -17,20 +17,15 @@ class MealsController < ApplicationController
       flash[:danger] = "You need to choose the name of a restaurant in the database. Try Chipotle or Flour."
       redirect_to new_meal_path
     else
-      @meal = Meal.new
-      @meal.restaurant_id = restaurant.id
-      @meal.save
+      @meal = Meal.new(restaurant: restaurant).save
       redirect_to meal_participants_path(@meal)
     end
-  end
-
-  def tax_and_tip
   end
 
   def update
     # send a payment request to each email in the list of participants
     meal = Meal.find(params[:id])
-    meal.tip_percent = params[:meal][:tip_percent].to_i
+    meal.tip_percent = params[:meal][:tip_percent].to_f
     meal.save
     meal.participants.each do |participant|
       if !participant.payer

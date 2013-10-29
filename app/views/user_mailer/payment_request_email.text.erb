@@ -9,9 +9,9 @@ Thank you for using MealSplit!
 	<%= item.name %>: <%= item.cost_pretty %>
 <% end %>
 
-Item Total: <%= number_to_currency(@participant.subtotal.to_f/100) %>
-Tax: <%= number_to_currency(@participant.tax.to_f/100) %>
+Item Total: <%= number_to_currency(@participant.subtotal) %>
+Tax: <%= number_to_currency(@participant.tax) %>
 Tip: <%= number_to_currency(@participant.tip(@meal.tip_percent)) %>
-Total: <%= number_to_currency(@participant.total.to_f/100 + @participant.tip(@meal.tip_percent)) %>
+Total: <%= number_to_currency(@participant.total + @participant.tip(@meal.tip_percent)) %>
 
 Yummm!

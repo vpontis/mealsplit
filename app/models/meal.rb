@@ -1,5 +1,7 @@
 # primary author: Vic
 class Meal < ActiveRecord::Base
+  validates :restaurant, presence: true
+
   belongs_to :restaurant
   has_many :participants
 
@@ -30,6 +32,11 @@ class Meal < ActiveRecord::Base
       meal_payer
     end
   end
+
+  def tax
+    self.restaurant.tax
+  end
+
 private
   def edit_meal_participant_path(meal, participant)
     "/meals/#{meal.id}/participants/#{participant.id}/edit"

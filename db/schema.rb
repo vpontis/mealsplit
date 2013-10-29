@@ -11,11 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131027232259) do
+ActiveRecord::Schema.define(version: 20131029194031) do
 
   create_table "charges", force: true do |t|
     t.integer  "payer_id"
-    t.integer  "amount"
+    t.float    "amount"
     t.integer  "owee_id"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -23,7 +23,7 @@ ActiveRecord::Schema.define(version: 20131027232259) do
 
   create_table "food_items", force: true do |t|
     t.string   "name"
-    t.integer  "cost"
+    t.float    "cost"
     t.integer  "restaurant_id"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -39,7 +39,7 @@ ActiveRecord::Schema.define(version: 20131027232259) do
     t.integer  "payer_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "tip_percent",   default: 15
+    t.float    "tip_percent",   default: 15.0
   end
 
   create_table "participants", force: true do |t|
@@ -57,6 +57,7 @@ ActiveRecord::Schema.define(version: 20131027232259) do
     t.string   "city"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.float    "tax",        default: 0.065
   end
 
 end

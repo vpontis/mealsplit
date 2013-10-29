@@ -1,5 +1,6 @@
 # primary author: Ty
 class Participant < ActiveRecord::Base
+  belongs_to :meal
   has_and_belongs_to_many :food_items
   validates_email_format_of :email
 
@@ -10,12 +11,15 @@ class Participant < ActiveRecord::Base
   def tax
     # all of the restaurants we have loaded now have a tax rate of 6.5%
     # in the future we will be associating a tax with a restaurant
-    0.065*subtotal
+    self.meal.tax * subtotal
   end
 
-  def tip(percent) 
-    tip_percentage = percent.to_f/100
-    tip_percentage * subtotal.to_f/100
+  def tip
+    if meal.tip_percent.nil? 
+      nil
+    else
+      self.subototal * meal.tip_percent
+    end
   end
 
   def total

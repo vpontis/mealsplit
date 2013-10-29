@@ -20,11 +20,11 @@
 
     <div class="subtotal">
       <span class="item">Subtotal:</span> 
-      <span class="cost"><%= number_to_currency(@participant.subtotal.to_f/100) %></span>
+      <span class="cost"><%= number_to_currency(@participant.subtotal) %></span>
     </div>
     <div class="subtotal">
       <span class="item">Tax: </span>
-      <span class="cost"><%= number_to_currency(@participant.tax.to_f/100) %></span>
+      <span class="cost"><%= number_to_currency(@participant.tax) %></span>
     </div>
     <div class="subtotal">
       <span class="item">Tip: </span>
@@ -34,7 +34,7 @@
     <hr />
     <div class="total">
       <span class="item">Total:</span>
-      <span class="cost"><%= number_to_currency(@participant.total.to_f/100 + @participant.tip(@meal.tip_percent)) %></span>
+      <span class="cost"><%= number_to_currency(@participant.total + @participant.tip(@meal.tip_percent)) %></span>
     </div>        
 
     <h4>Yum Yum!</h4>

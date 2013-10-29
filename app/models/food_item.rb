@@ -4,11 +4,7 @@ class FoodItem < ActiveRecord::Base
   has_and_belongs_to_many :participants
 
   def cost_pretty 
-  	'$' + '%.2f' % cost_decimal
-  end
-
-  def cost_decimal
-  	self.cost.to_f/100
+  	'$' + '%.2f' % self.cost
   end
 end
 

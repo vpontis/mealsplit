@@ -25,17 +25,17 @@
 
           <div class="subtotal">
             <span class="item">Subtotal:</span> 
-            <span class="cost"><%= number_to_currency(participant.subtotal.to_f/100) %></span>
+            <span class="cost"><%= number_to_currency(participant.subtotal) %></span>
           </div>
           <div class="subtotal">
             <span class="item">Tax: </span>
-            <span class="cost"><%= number_to_currency(participant.tax.to_f/100) %></span>
+            <span class="cost"><%= number_to_currency(participant.tax) %></span>
           </div>
 
           <hr />
           <div class="total">
             <span class="item">Total before tip:</span>
-            <span class="cost"><%= number_to_currency(participant.subtotal.to_f/100) %></span>
+            <span class="cost"><%= number_to_currency(participant.subtotal) %></span>
           </div>        
         </div>
       <% end %>
@@ -49,10 +49,10 @@
           <%= label_tag(:tip_percent) %>
           <%= hidden_field :meal, :tip_percent, value: 0 %>
           <div id="tip-percent-input" class="btn-group">
-            <span class="btn btn-default active" data-value="0">0</span>
-            <span class="btn btn-default" data-value="10">10</span>
-            <span class="btn btn-default" data-value="15">15</span>
-            <span class="btn btn-default" data-value="20">20</span>
+            <span class="btn btn-default active" data-value="0">0%</span>
+            <span class="btn btn-default" data-value=".10">10%</span>
+            <span class="btn btn-default" data-value=".15">15%</span>
+            <span class="btn btn-default" data-value=".20">20%</span>
           </div>
         </div>
         <%= submit_tag("Send Payment Requests", class: "btn btn-primary") %>
