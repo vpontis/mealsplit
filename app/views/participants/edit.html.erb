@@ -33,11 +33,13 @@
     <br />
 
     <% if @meal.unprocessed_participants.empty? %>
-      <%= link_to "Meal Summary and Confirmation", meal_path(@meal), class: "btn btn-primary" %>
-    <% else %>  
-      <%= link_to "Next Participant >>", edit_meal_participant_path(@meal, @meal.next_participant),
-        class: "btn btn-success" %>
+      <%= link_to "Meal Summary and Confirmation", meal_path(@meal), class: "btn btn-success" %>
+    <% elsif @meal.unprocessed_participants.count == 1 && @meal.unprocessed_participants.first == @participant %>  
+      <span>This is the last participant without food entered. Enter in a food item here and you can move on to the meal confirmation page.</span>
+    <% else %>
+      <%= link_to "Next Participant >>", edit_meal_participant_path(@meal, @meal.next_participant), class: "btn btn-primary" %>
     <% end %>
+
   </div>
 
   <div class="col-md-4">
