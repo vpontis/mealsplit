@@ -1,10 +1,15 @@
 source 'https://rubygems.org'
 
-ruby '2.0.0'
+ruby '1.9.3'
+
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.0'
 
+# validate email formats
 gem 'validates_email_format_of', :git => 'git://github.com/alexdunae/validates_email_format_of.git'
+
+# manage authentication and authorization
+gem 'devise'
 
 group :development, :test do
   # Use sqlite3 as the database for Active Record

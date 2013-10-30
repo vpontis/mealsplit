@@ -1,5 +1,6 @@
 # primary authors: all
 VpontisEmzhangTscizzleProj3::Application.routes.draw do
+  devise_for :users
   root 'static_pages#home'
 
   resources :meals do
