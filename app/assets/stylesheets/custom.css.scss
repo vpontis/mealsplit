@@ -54,3 +54,8 @@ input[type="text"] {
     display: inline-block;
   }
 }
+
+/* make old bootstrap alerts work */
+.alert-notice {
+  @extend .alert-info;
+}

@@ -7,6 +7,7 @@ VpontisEmzhangTscizzleProj3::Application.routes.draw do
     resources :participants
   end
 
+  resources :users
   resources :restaurants
 
   match '/meals/:meal_id/participants/:id/destroy_food_item/:food_item_id', via: 'delete', to: 'participants#destroy_food_item'
