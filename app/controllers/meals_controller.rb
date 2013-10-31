@@ -1,6 +1,13 @@
 # primary author: Vic
 class MealsController < ApplicationController
   before_filter :meal_complete,    only: [:show]
+  before_filter :signed_in,        only: [:index]
+
+  # make sure other people cannot see meals created in the past
+
+  def index
+    @meals = current_user.meals
+  end
 
   def new
     @meal = Meal.new
@@ -38,25 +45,28 @@ class MealsController < ApplicationController
     redirect_to '/thank_you'
   end
 
-  def index
-    @meals = Meal.all
+private
+  def send_payment_request(participant, meal)
+    UserMailer.payment_request_email(participant, meal).deliver
+  end  
+
+private
+  def send_leader_summary(meal)
+    UserMailer.leader_summary_email(meal).deliver
   end
 
-  private
-    def send_payment_request(participant, meal)
-      UserMailer.payment_request_email(participant, meal).deliver
-    end  
-
-  private
-    def send_leader_summary(meal)
-      UserMailer.leader_summary_email(meal).deliver
+  def meal_complete
+    @meal = Meal.find(params[:id])
+    if @meal.unprocessed_participants.count != 0 || @meal.participants.count == 0
+       flash[:danger] = "All of the participants must have a food item before you can view the meal summary."
+       redirect_to meal_participants_path(@meal)
     end
+  end
 
-    def meal_complete
-      @meal = Meal.find(params[:id])
-      if @meal.unprocessed_participants.count != 0 || @meal.participants.count == 0
-         flash[:danger] = "All of the participants must have a food item before you can view the meal summary."
-         redirect_to meal_participants_path(@meal)
-      end
+  def signed_in
+    if current_user.nil?
+      flash[:danger] = 'You need to be signed in to view past meals.'
+      redirect_to root_path
     end
+  end
 end

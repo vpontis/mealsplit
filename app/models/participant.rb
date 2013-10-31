@@ -1,7 +1,7 @@
 # primary author: Ty
 class Participant < ActiveRecord::Base
   belongs_to :meal
-  belongs_to :user
+  # belongs_to :user
   has_and_belongs_to_many :food_items
   validates_email_format_of :email
 

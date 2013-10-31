@@ -1,7 +1,9 @@
-<h1>Meals</h1>
+<div class="col-md-offset-3 col-md-6 center">
+  <h1>Meals for <%= current_user.name %></h1>
 
-<% @meals.each do |meal| %>
-  <div> 
-    <%= link_to "Meal #{meal.id}", meal_participants_path(meal) %>
-  </div>
-<% end %>
+  <% @meals.each do |meal| %>
+    <div> 
+      <%= link_to "Meal #{meal.id} at #{meal.restaurant.name}", meal_participants_path(meal) %>
+    </div>
+  <% end %>
+</div>
