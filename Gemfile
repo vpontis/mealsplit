@@ -16,6 +16,9 @@ group :production, :staging do
   gem 'rails_12factor'
 end
 
+# Use Factory Girl for testing
+gem 'factory_girl_rails'
+
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
 # Experimental Bootstrap 3.0 beta -- use at your own risk.

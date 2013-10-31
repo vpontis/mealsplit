@@ -2,8 +2,8 @@
 
 one:
   restaurant_id: 1
-  meal_payer_id: 1
+  payer_id: 1
 
 two:
   restaurant_id: 1
-  meal_payer_id: 1
+  payer_id: 1
