@@ -5,6 +5,33 @@ class MealTest < ActiveSupport::TestCase
   #   assert true
   # end
   #meal = FactoryGirl.create(:meal, restaurant: restaurant)
+
+
+  def test_next_participant_path_no_unprocessed
+  	restaurant = FactoryGirl.create(:restaurant)
+  	participant = FactoryGirl.create(:participant)
+  	meal = FactoryGirl.create(:meal, restaurant: restaurant)
+  	assert_equal "/meals/1/participants/1/edit", meal.next_participant_path
+  end
+
+  def test_next_participant_path_unprocessed
+  	restaurant = FactoryGirl.create(:restaurant)
+  	participant = FactoryGirl.create(:participant, processed: false)
+  	meal = FactoryGirl.create(:meal, restaurant: restaurant)
+  	assert_equal "/meals/1/participants/1/edit", meal.next_participant_path
+  end
+  '''
+  def test_unprocessed_participants
+  	restaurant = FactoryGirl.create(:restaurant)
+  	#participant1 = FactoryGirl.build(:participant, processed: false)
+  	#participant2 = FactoryGirl.build(:participant, processed: false)
+  	food_items = FactoryGirl.create(:food_item)
+  	meal = FactoryGirl.create(:meal, restaurant: restaurant)
+  	participant1 = FactoryGirl.build(:participant_with_food_items, meal: meal, food_items: nil)
+  	participant2 = FactoryGirl.build(:participant_with_food_items, meal: meal, food_items: nil)
+  	assert_equal nil, meal.unprocessed_participants
+  end
+  '''
   def test_payer 
    	restaurant = FactoryGirl.create(:restaurant)
   	meal = FactoryGirl.create(:meal, restaurant: restaurant)
@@ -22,17 +49,4 @@ class MealTest < ActiveSupport::TestCase
   	assert_equal 0.065, restaurant.tax
   end
 
-  def test_next_participant_path_no_unprocessed
-  	restaurant = FactoryGirl.create(:restaurant)
-  	participant = FactoryGirl.create(:participant)
-  	meal = FactoryGirl.create(:meal, restaurant: restaurant)
-  	assert_equal "/meals/1/participants/1/edit", meal.next_participant_path
-  end
-
-  def test_next_participant_path_unprocessed
-  	restaurant = FactoryGirl.create(:restaurant)
-  	participant = FactoryGirl.create(:participant)
-  	meal = FactoryGirl.create(:meal, restaurant: restaurant)
-  	assert_equal "/meals/1/participants/1/edit", meal.next_participant_path
-  end
 end
