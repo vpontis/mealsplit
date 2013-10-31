@@ -17,9 +17,13 @@
   display: inline-block;
 }
 
-input[type="text"] {
-  width: 300px;
-}
+// #restaurant-name-input {
+//   display: block;
+// }
+
+// input[type="text"] {
+//   width: 300px;
+// }
 
 // input[type="submit"].form-control {
 //   max-width: 300px;
@@ -58,4 +62,17 @@ input[type="text"] {
 /* make old bootstrap alerts work */
 .alert-notice {
   @extend .alert-info;
+}
+
+.alert-alert {
+  @extend .alert-danger;
+}
+
+/* error explanation */
+#error_explanation {
+  @extend .alert-danger;
+  h2 {
+    font-size: 150%;
+    text-align: center;
+  }
 }

@@ -6,7 +6,6 @@ var populate_restaurant_typeahead = function(){
       ttl: 0,
     }
   );
-  return 5;
 };
 
 var meal_participants = 1;
