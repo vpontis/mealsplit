@@ -5,13 +5,8 @@ class Meal < ActiveRecord::Base
   belongs_to :restaurant
   has_many :participants
 
-  def next_participant_path
-    participant = self.unprocessed_participants.first
-    if !participant.nil?
-      edit_meal_participant_path(self, participant)
-    else
-      self.summary_path
-    end
+  def next_participant
+    self.unprocessed_participants.first
   end
 
   def unprocessed_participants
@@ -35,10 +30,5 @@ class Meal < ActiveRecord::Base
 
   def tax
     self.restaurant.tax
-  end
-
-private
-  def edit_meal_participant_path(meal, participant)
-    "/meals/#{meal.id}/participants/#{participant.id}/edit"
   end
 end

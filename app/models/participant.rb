@@ -1,6 +1,7 @@
 # primary author: Ty
 class Participant < ActiveRecord::Base
   belongs_to :meal
+  belongs_to :user
   has_and_belongs_to_many :food_items
   validates_email_format_of :email
 
@@ -9,8 +10,6 @@ class Participant < ActiveRecord::Base
   end
 
   def tax
-    # all of the restaurants we have loaded now have a tax rate of 6.5%
-    # in the future we will be associating a tax with a restaurant
     self.meal.tax * subtotal
   end
 

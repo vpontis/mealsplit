@@ -1,11 +1,13 @@
 # primary authors: all
 VpontisEmzhangTscizzleProj3::Application.routes.draw do
+  devise_for :users
   root 'static_pages#home'
 
   resources :meals do
     resources :participants
   end
 
+  resources :users
   resources :restaurants
 
   match '/meals/:meal_id/participants/:id/destroy_food_item/:food_item_id', via: 'delete', to: 'participants#destroy_food_item'

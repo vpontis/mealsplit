@@ -21,9 +21,9 @@ input[type="text"] {
   width: 300px;
 }
 
-input[type="submit"].form-control {
-  max-width: 300px;
-}
+// input[type="submit"].form-control {
+//   max-width: 300px;
+// }
 
 .center {
   text-align: center;
@@ -53,4 +53,9 @@ input[type="submit"].form-control {
     width: 60px;
     display: inline-block;
   }
+}
+
+/* make old bootstrap alerts work */
+.alert-notice {
+  @extend .alert-info;
 }
