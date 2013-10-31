@@ -1,12 +1,12 @@
 # primary author: Ty
 class UserMailer < ActionMailer::Base
-  default from: "MealSplit"
+  default from: "mealsplit@gmail.com"
 
   def payment_request_email(participant, meal)
     @meal = meal
-  	@meal_leader = @meal.payer.email
+    @meal_leader = @meal.payer.email
     @participant = participant
-  	mail(to: participant.email, subject: "Payment Request from #{@meal_leader}")
+    mail(to: participant.email, subject: "Payment Request from #{@meal_leader}")
   end
 
   def leader_summary_email(meal)
