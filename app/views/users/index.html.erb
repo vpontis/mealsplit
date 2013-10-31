@@ -1,0 +1,17 @@
+<div class="row">
+  <div class="col-md-offset-2 col-md-8">
+    <div class="users">
+      <% @users.each do |user| %>
+        <span>
+          <%= user.name %>
+        </span>
+        <span>
+          <%= user.email %>
+        </span>
+        <span>
+          <%= link_to "Delete", user_path(user), method: delete %>
+        </span>
+      <% end %>
+    </div>
+  </div>
+</div>
