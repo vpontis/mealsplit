@@ -24,4 +24,8 @@ class Participant < ActiveRecord::Base
   def total
     subtotal+tax
   end
+
+  def participant_user
+    User.find(self.user_id)
+  end
 end
