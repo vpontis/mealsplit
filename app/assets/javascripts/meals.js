@@ -32,6 +32,5 @@ var setup_tip_buttons = function(){
     $(this).siblings().removeClass('active');
     var tip_amount = $(this).attr('data-value');
     $('#meal_tip_percent').attr('value', tip_amount);
-    $('.tip_parital').load('<%= escape_javascript(render partial: "meals/participant_tip", locals: {participant: participant}) %>')
   });
 };
