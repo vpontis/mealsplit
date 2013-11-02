@@ -2,7 +2,7 @@
   <h1>Profile for <%= current_user.name %></h1>
 
   <% current_user.meals.each do |meal| %>
-  	You owe: <%= current_user.user_to_owe_for_meal(meal) %>
+  	You owe: <%= current_user.user_to_owe_for_meal(meal).name %>
   	this much: <%= current_user.owes_how_much_for_meal(meal) %>
   <% end %>
 

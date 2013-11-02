@@ -26,11 +26,14 @@ class User < ActiveRecord::Base
   end
 
   def user_participant_for_meal(meal)
-    Participant.where("meal_id = ? AND user_id = ?", meal.id, self.id).first
+    # again, once participants have a user_id, can use this first line, but for now use email
+    # Participant.where("meal_id = ? AND user_id = ?", meal.id, self.id).first
+    Participant.where("meal_id = ? AND email = ?", meal.id, self.email).first
   end
 
   def owes_how_much_for_meal(meal)
     participant = user_participant_for_meal(meal)
-    participant.total.to_i+participant.tip.to_i
+    # TODO make this look like money
+    participant.total.to_f+participant.tip.to_f
   end    
 end
