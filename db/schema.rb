@@ -39,7 +39,7 @@ ActiveRecord::Schema.define(version: 20131031023400) do
     t.integer  "payer_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.float    "tip_percent",   default: 15.0
+    t.float    "tip_percent",   default: 0.15
   end
 
   create_table "participants", force: true do |t|
