@@ -34,3 +34,10 @@ var setup_tip_buttons = function(){
     $('#meal_tip_percent').attr('value', tip_amount);
   });
 };
+
+var payer_chosen = function(elem){
+  $('.payer-button').removeAttr('disabled').text('I paid!');
+  $(elem).attr('disabled', 'disabled').text('Payer!');
+  var email = $(elem).attr('data-email');
+  $('#meal_payer_email').val(email);
+};

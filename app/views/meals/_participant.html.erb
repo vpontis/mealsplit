@@ -1,11 +1,8 @@
 <div class="participant-details">
   <div>
     <span class="email">
-      <% if participant.payer %>
-        <span class="btn btn-primary payer-button" disabled="disabled" onlcik="payer_chosen();">Payer!</span>
-      <% else %>
-        <span class="btn btn-primary payer-button" onclick="payer_chosen(this);">I paid!</span>
-      <% end %>
+      <span class="btn btn-primary payer-button" onclick="payer_chosen(this);" data-email="<%= participant.email %>">I paid!</span>
+      <%= "#{participant.name} --" unless participant.name.nil? %>
       <%= participant.email %>
     </span> 
     <%= link_to 'edit details', edit_meal_participant_path(@meal, participant) %>
