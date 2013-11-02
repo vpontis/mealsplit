@@ -1,3 +1,4 @@
+# primary author: Em
 require 'test_helper'
 
 class RestaurantTest < ActiveSupport::TestCase
