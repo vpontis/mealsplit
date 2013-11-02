@@ -54,17 +54,19 @@ class FoodItemTest < ActiveSupport::TestCase
   def test_participant_user1
   	restaurant = FactoryGirl.create(:restaurant)
   	meal = FactoryGirl.create(:meal, restaurant: restaurant)
-  	food_item1 = FactoryGirl.build(:food_item, cost: 10.0,)
-  	food_item2 = FactoryGirl.build(:food_item,  cost: 11.0,)
-  	participant = FactoryGirl.create(:participant, meal: meal, food_items: [food_item1, food_item2])
-  	puts participant.email
-  	assert_equal "Emily", participant.participant_user
+  	participant = FactoryGirl.create(:participant, meal: meal, food_items: [], email: "test1@test.com", name: "Emily")
+  	#user = FactoryGirl.create(:user, name: "Emily")
+  	assert_equal User.find_by(email: "test1@test.com"), participant.participant_user
   end
 
-  def test_participant_user2
+  def test_name1
+  	restaurant = FactoryGirl.create(:restaurant)
+  	meal = FactoryGirl.create(:meal, restaurant: restaurant)
+  	participant = FactoryGirl.create(:participant, meal: meal, food_items: [], email: "emily@emily.com")
 
+  	assert_equal nil, participant.name
   end
 
-  def test_name
+  def test_name2
   end
 end

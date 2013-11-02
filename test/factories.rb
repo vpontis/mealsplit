@@ -3,7 +3,7 @@ FactoryGirl.define do
     factory :participant do
         id 1
         name "Emily"
-        email "1800.ehz.hang@gmail.com"
+        email "test1@test.com"
         payer true
         meal_id 1
         processed true
@@ -45,4 +45,10 @@ FactoryGirl.define do
     	restaurant_id 1
    	end
 
+   	factory :user do
+   		id 1
+   		name "Emily"
+   		email "test1@test.com"
+
+   	end
 end
