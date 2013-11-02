@@ -26,7 +26,6 @@ class MealTest < ActiveSupport::TestCase
   def test_payer 
    	restaurant = FactoryGirl.create(:restaurant)
   	meal = FactoryGirl.create(:meal, restaurant: restaurant)
-    puts meal.payer_id,"afjdajfdsajf"
     assert_equal 1, meal.payer_id
   end
 

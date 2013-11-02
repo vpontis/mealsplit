@@ -25,18 +25,29 @@ class UserTest < ActiveSupport::TestCase
     assert_equal meal1, user.meals[0]
   end
 
-  def test_does_owe_for_meal
+  def test_does_owe_for_meal1
     restaurant = FactoryGirl.create(:restaurant)
     meal = FactoryGirl.create(:meal, restaurant: restaurant)
-    puts meal.payer_id,"cccc"
     participant = FactoryGirl.create(:participant)
-    user = FactoryGirl.create(:user, email: "test2@test.com", password: "fdsafdsa", id: 1)
-    puts "aaaa",meal.payer,"bbb"
-    
-    assert_false user.does_owe_for_meal(meal)
+    user = FactoryGirl.create(:user, email: "test3@test.com", password: "fdsafdsa", id: 1)
+    assert_equal true, user.does_owe_for_meal(meal)
   end
+  '''
+  def test_does_owe_for_meal2
+    restaurant = FactoryGirl.create(:restaurant)
+    meal = FactoryGirl.create(:meal,  restaurant: restaurant)
+    participant = FactoryGirl.create(:participant)
+    user = FactoryGirl.create(:user, email: "test4@test.com", password: "fdsafdsa", id: 2)
+    assert_equal nil, user.does_owe_for_meal(meal)
+  end
+  '''
 
   def test_user_to_owe_for_meal
+    restaurant = FactoryGirl.create(:restaurant)
+    meal = FactoryGirl.create(:meal, restaurant: restaurant)
+    participant = FactoryGirl.create(:participant)
+    user = FactoryGirl.create(:user, email: "test3@test.com", password: "fdsafdsa", id: 1)
+    assert_equal User.first, user.user_to_owe_for_meal(meal)
   end
 
   def test_user_participant_for_meal
