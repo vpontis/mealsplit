@@ -148,8 +148,8 @@ PLATFORMS
 DEPENDENCIES
   bootstrap-sass!
   coffee-rails (~> 4.0.0)
-  factory_girl_rails
   devise
+  factory_girl_rails
   jbuilder (~> 1.2)
   jquery-rails
   pg

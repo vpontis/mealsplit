@@ -6,6 +6,9 @@ gem 'rails', '4.0.0'
 
 gem 'validates_email_format_of', :git => 'git://github.com/alexdunae/validates_email_format_of.git'
 
+# manage authentication and authorization
+gem 'devise'
+
 group :development, :test do
   # Use sqlite3 as the database for Active Record
   gem 'sqlite3'

@@ -6,6 +6,6 @@ one:
   owee_id: 1
 
 two:
-  payer_id: 1
-  amount: 1
-  owee_id: 1
+  payer_id: 2
+  amount: 2
+  owee_id: 2

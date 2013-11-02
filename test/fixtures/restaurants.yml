@@ -1,8 +1,8 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
 one:
-  name: MyString
-  city: MyString
+  name: MyString1
+  city: MyString1
 
 two:
   name: MyString

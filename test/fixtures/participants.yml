@@ -1,11 +1,11 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
 one:
-  name: MyString
-  email: MyString
+  name: MyString1
+  email: MyString1
   payer: false
 
 two:
-  name: MyString
-  email: MyString
+  name: MyString2
+  email: MyString2
   payer: false
