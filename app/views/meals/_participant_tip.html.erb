@@ -1,0 +1,9 @@
+<hr />
+<div class="tip">
+	<span class="item">Tip:</span>
+	<span class="cost"><%= number_to_currency(participant.tip) %></span>
+</div>
+<div class="total_with_tip">
+	<span class="item">Total with tip:</span>
+	<span class="cost"><%= number_to_currency(participant.total + participant.tip) %></span>
+</div> 
