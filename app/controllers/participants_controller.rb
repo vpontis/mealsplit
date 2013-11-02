@@ -85,10 +85,10 @@ private
 
   def meal_valid
     @meal = Meal.find(params[:meal_id])
-    if @meal.payer.nil? 
-      flash[:danger] = 'The meal must have a payer before you edit participants food items.'
-      redirect_to meal_participants_path(@meal)
-    end
+    # if @meal.payer.nil? 
+    #   flash[:danger] = 'The meal must have a payer before you edit participants food items.'
+    #   redirect_to meal_participants_path(@meal)
+    # end
     if  @meal.participants.count < 2
       flash[:danger] = 'The meal must have at least two participants. You can\'t share with yourself'
       redirect_to meal_participants_path(@meal)
