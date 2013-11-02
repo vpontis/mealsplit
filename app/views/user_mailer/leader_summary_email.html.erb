@@ -29,13 +29,13 @@
       </div>
       <div class="subtotal">
         <span class="item">Tip: </span>
-        <span class="cost"><%= number_to_currency(participant.tip(@meal.tip_percent)) %></span>
+        <span class="cost"><%= number_to_currency(participant.tip %></span>
       </div>
 
       <hr />
       <div class="total">
         <span class="item">Total:</span>
-        <span class="cost"><%= number_to_currency(participant.total + participant.tip(@meal.tip_percent)) %></span>
+        <span class="cost"><%= number_to_currency(participant.total + participant.tip %></span>
       </div>        
 
       <br />

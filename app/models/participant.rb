@@ -17,7 +17,7 @@ class Participant < ActiveRecord::Base
     if meal.tip_percent.nil? 
       nil
     else
-      self.subototal * meal.tip_percent
+      self.subtotal * meal.tip_percent
     end
   end
 
