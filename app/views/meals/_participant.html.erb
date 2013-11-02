@@ -31,6 +31,8 @@
   <div class="total">
     <span class="item">Total before tip:</span>
     <span class="cost"><%= number_to_currency(participant.total) %></span>
-  </div>        
-  <%= render partial: 'meals/participant_tip', locals: {participant: participant} %>
+  </div>
+  <div class="tip_partial">
+    <%= render partial: 'meals/participant_tip', locals: {participant: participant} %>
+  </div>
 </div>
