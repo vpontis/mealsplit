@@ -22,7 +22,17 @@ class ParticipantsController < ApplicationController
       @participant.processed = true
       @participant.save
     end
-    redirect_to edit_meal_participant_path(@meal, @participant)
+    respond_to do |format|
+      format.js {
+        render partial: 'add_food_item', food_item: @food_item
+      }
+      format.json {
+        render json: food_item
+      }
+      format.html {
+        redirect_to edit_meal_participant_path(@meal, @participant)
+      }
+    end
   end
 
   def create

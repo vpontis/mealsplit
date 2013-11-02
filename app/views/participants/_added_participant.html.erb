@@ -1,0 +1,7 @@
+<% if !@food_item.id.nil? %>
+  <div class="food-item">
+    <span class="food-item-name"><%= @food_item.name%></span>
+    <span class="food-item-cost"><%= @food_item.cost_pretty %></span>
+    <%= link_to "I didn't get this!", destroy_food_item_path(@meal, @participant, @food_item), method: :delete, data: {confirm: "Are you sure you didn't eat a #{food_item.name}?"} %>
+  </div>
+<% end %>
