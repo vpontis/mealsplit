@@ -55,7 +55,6 @@ class FoodItemTest < ActiveSupport::TestCase
   	restaurant = FactoryGirl.create(:restaurant)
   	meal = FactoryGirl.create(:meal, restaurant: restaurant)
   	participant = FactoryGirl.create(:participant, meal: meal, food_items: [], email: "test1@test.com", name: "Emily")
-  	#user = FactoryGirl.create(:user, name: "Emily")
   	assert_equal User.find_by(email: "test1@test.com"), participant.participant_user
   end
 
@@ -68,5 +67,9 @@ class FoodItemTest < ActiveSupport::TestCase
   end
 
   def test_name2
+  	restaurant = FactoryGirl.create(:restaurant)
+  	meal = FactoryGirl.create(:meal, restaurant: restaurant)
+  	participant = FactoryGirl.create(:participant, meal: meal, food_items: [], email: "test1@test.com", name: "Emily")
+  	assert_equal participant.participant_user.name, participant.name
   end
 end
