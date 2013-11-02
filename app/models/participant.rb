@@ -26,6 +26,14 @@ class Participant < ActiveRecord::Base
   end
 
   def participant_user
-    User.find(self.user_id)
+    User.find_by(email: self.email)
+  end
+
+  def name
+    if self.participant_user.nil?
+      nil
+    else
+      self.participant_user.name
+    end
   end
 end

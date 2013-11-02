@@ -8,17 +8,7 @@
     <% if @meal.participants.count != 0 %>
       <h2>Meal Participants</h2>
     <% end %>
-    <% @meal.participants.each do |participant| %>
-      <% if !participant.id.nil? %>
-        <div>
-          <span class="participant-email">
-            <strong><%= "Payer:" if participant.payer == true %></strong>
-            <%= participant.email %>
-          </span>
-          <span><%= link_to "They weren't there!", meal_participant_path(@meal, participant), method: :delete, data: {confirm: "Are you sure?"} %></span>
-        </div>
-      <% end %>
-    <% end %>
+    <%= render @meal.participants %>
 
     <% if @meal.payer.nil? %>
       <h2>Who paid for the meal?</h2>
@@ -53,6 +43,8 @@
           class: "btn btn-success" %>
     <% else %>
       <p>To move on you need to specify who paid and have at least two participants. You didn't eat alone, did you?</p>
+      <%= link_to "Begin entering food items >>", edit_meal_participant_path(@meal, @meal.participants.first),
+          class: "btn btn-success", disabled: "disabled" %>
     <% end %>
   </div>
 </div>
