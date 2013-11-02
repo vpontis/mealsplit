@@ -16,4 +16,21 @@ class User < ActiveRecord::Base
   def meals
     self.participants.map {|participant| participant.meal }
   end
+
+  def does_owe_for_meal(meal)
+    self.id != meal.payer.participant_user.id
+  end
+
+  def user_to_owe_for_meal(meal)
+    meal.payer.participant_user
+  end
+
+  def user_participant_for_meal(meal)
+    Participant.where("meal_id = ? AND user_id = ?", meal.id, self.id)
+  end
+
+  def owes_how_much_for_meal(meal)
+    participant = user_participant_for_meal(meal)
+    participant.total+participant.tip
+  end    
 end
