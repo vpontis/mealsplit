@@ -8,8 +8,10 @@ VpontisEmzhangTscizzleProj3::Application.routes.draw do
   end
 
   resources :users
+
   resources :restaurants
 
+  match '/restaurants/:id/destroy_food_item/:food_item_id', via: 'delete', to: 'restaurants#destroy_food_item'
   match '/meals/:meal_id/participants/:id/destroy_food_item/:food_item_id', via: 'delete', to: 'participants#destroy_food_item'
 
   match '/meals/:id/complete_meal', via: 'post', to: 'meals#complete_meal'

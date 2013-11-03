@@ -31,15 +31,24 @@ class MealsController < ApplicationController
   end
 
   def update
-    # send a payment request to each email in the list of participants
-    meal = Meal.find(params[:id])
-    meal.tip_percent = params[:meal][:tip_percent].to_f
-    meal.save
-    meal.participants.each do |participant|
+    @meal = Meal.find(params[:id])
+    payer = @meal.participants.find_by("email = ?", params[:meal][:payer_email])
+    if payer.nil?
+      flash[:danger] = "You must select a payer before proceeding."
+      redirect_to meal_path(@meal)
+      return
+    else
+      @meal.payer = payer
+      payer.payer = true
+    end
+
+    @meal.tip_percent = params[:meal][:tip_percent].to_f
+    @meal.save
+    @meal.participants.each do |participant|
       if !participant.payer
-        send_payment_request(participant, meal)
+        send_payment_request(participant, @meal)
       elsif participant.payer
-        send_leader_summary(meal)
+        send_leader_summary(@meal)
       end
     end
     redirect_to '/thank_you'

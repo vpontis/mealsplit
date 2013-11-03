@@ -11,6 +11,7 @@
     <div class="collapse navbar-collapse">
       <ul class="nav navbar-nav navbar-right">
         <li><%= link_to "Home", root_path %></li>
+        <li><%= link_to "Restaurants", restaurants_path %></li>
         <li><%= link_to "New Meal", new_meal_path %></li>
         <% if user_signed_in? %>
           <li><%= link_to "Past Meals", meals_path %></li>
