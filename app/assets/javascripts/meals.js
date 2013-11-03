@@ -27,11 +27,25 @@ var add_meal_participant = function() {
 var setup_tip_buttons = function(){
  // make button toggles update hidden field
   $('#tip-percent-input .btn').on('click', function(event){
+    // modify the buttons and set the tip value on the form
     event.preventDefault();
     $(this).addClass('active')
     $(this).siblings().removeClass('active');
     var tip_amount = $(this).attr('data-value');
     $('#meal_tip_percent').attr('value', tip_amount);
+
+    $('.tip-value').each(function(i, e){
+      var subtotal = $(e).attr('data-subtotal');
+      var new_tip = parseFloat(tip_amount * subtotal);
+      $(e).text('$' + new_tip.toFixed(2));
+
+      var participant_id = $(e).attr('data-participant-id');
+      var total_field = $(".total-value[data-participant-id="+participant_id+"]");
+      var previous_total = parseFloat($(total_field).attr('data-total-without-tax'));
+      var new_total = new_tip + previous_total;
+      $(total_field).text('$' + new_total.toFixed(2));
+    });
+
   });
 };
 

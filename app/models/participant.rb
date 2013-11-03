@@ -22,7 +22,7 @@ class Participant < ActiveRecord::Base
   end
 
   def total
-    subtotal+tax
+    subtotal + tax
   end
 
   def participant_user

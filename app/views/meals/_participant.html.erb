@@ -23,13 +23,15 @@
     <span class="item">Tax: </span>
     <span class="cost"><%= number_to_currency(participant.tax) %></span>
   </div>
-
-  <hr />
-  <div class="total">
-    <span class="item">Total before tip:</span>
-    <span class="cost"><%= number_to_currency(participant.total) %></span>
+  <div class="tip">
+    <span class="item">Tip: </span>
+    <span class="cost tip-value" data-participant-id="<%= participant.id %>" data-subtotal="<%= participant.subtotal %>"><%= number_to_currency(participant.tip) %></span>
   </div>
-  <div class="tip_partial">
-    <%= render partial: 'meals/participant_tip', locals: {participant: participant} %>
+  
+  <hr />
+
+  <div class="total">
+    <span class="item">Total:</span>
+    <span class="cost total-value" data-participant-id="<%= participant.id %>" data-total-without-tax="<%= participant.subtotal + participant.tax %>"><%= number_to_currency(participant.total + participant.tip) %></span>
   </div>
 </div>
