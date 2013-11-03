@@ -18,20 +18,20 @@ class User < ActiveRecord::Base
     self.participants.map {|participant| participant.meal }
   end
 
-  def does_owe_for_meal(meal)
-    self.id != meal.payer.participant_user.id
+  # for each meal see how much this user owes
+  def owes 
+    owes_list = []
+    self.meals.each do |meal|
+      if meal.payer == self
+        next
+      end
+      participant = meal.participants.find_by(email: self.email)
+      owe_object = {}
+      owe_object['total'] = participant.total
+      owe_object['restaurant'] = meal.restaurant.name
+      owe_object['payer'] = meal.payer.email
+      owes_list << owe_object
+    end
+    owes_list
   end
-
-  def user_to_owe_for_meal(meal)
-    meal.payer.participant_user
-  end
-
-  def user_participant_for_meal(meal)
-    Participant.where("meal_id = ? AND email = ?", meal.id, self.email).first
-  end
-
-  def owes_how_much_for_meal(meal)
-    participant = user_participant_for_meal(meal)
-    participant.total+participant.tip
-  end    
 end

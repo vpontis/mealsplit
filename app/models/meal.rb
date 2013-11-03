@@ -13,9 +13,16 @@ class Meal < ActiveRecord::Base
     self.participants.select {|participant| participant.food_items.count==0}
   end
 
-  def payer=(participant)
-    self.payer_id = participant.id
+  def payer=(payer)
+    self.payer_id = payer.id
     self.save
+
+    self.participants.each do |par|
+      par.payer = false
+      par.save
+    end
+    payer.payer = true
+    payer.save
   end
 
   def payer
