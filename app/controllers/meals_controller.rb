@@ -2,6 +2,7 @@
 class MealsController < ApplicationController
   before_filter :meal_complete,    only: [:show]
   before_filter :signed_in,        only: [:index]
+  before_filter :can_view_meal,    only: [:show]
 
   # make sure other people cannot see meals created in the past
 
@@ -26,6 +27,7 @@ class MealsController < ApplicationController
     else
       @meal = Meal.new(restaurant: restaurant)
       @meal.save
+      session[:meal_id] = @meal.id
       redirect_to meal_participants_path(@meal)
     end
   end
@@ -59,7 +61,6 @@ private
     UserMailer.payment_request_email(participant, meal).deliver
   end  
 
-private
   def send_payer_summary(meal)
     UserMailer.payer_summary_email(meal).deliver
   end
@@ -77,5 +78,15 @@ private
       flash[:danger] = 'You need to be signed in to view past meals.'
       redirect_to root_path
     end
+  end
+
+  def can_view_meal
+    if session[:meal_id] == params[:id].to_i
+      return
+    elsif !current_user.nil? && !current_user.meals.find_by(id: params[:meal_id]).nil?
+      return
+    end
+    flash[:danger] = 'Sorry you cannot view this meal.'
+    redirect_to root_path
   end
 end

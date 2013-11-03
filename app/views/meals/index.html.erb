@@ -3,7 +3,7 @@
 
   <% @meals.each do |meal| %>
     <div> 
-      <%= link_to "Meal #{meal.id} at #{meal.restaurant.name}", meal_participants_path(meal) %>
+      <%= link_to "Meal #{meal.id} at #{meal.restaurant.name}", meal_path(meal) %>
     </div>
   <% end %>
 </div>

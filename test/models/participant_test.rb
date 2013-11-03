@@ -2,10 +2,6 @@
 require 'test_helper'
 
 class ParticipantTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
-  
   def test_subtotal
   	restaurant = FactoryGirl.create(:restaurant)
   	meal = FactoryGirl.create(:meal, restaurant: restaurant)
