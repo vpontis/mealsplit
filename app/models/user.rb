@@ -8,6 +8,7 @@ class User < ActiveRecord::Base
   # has_many :meals, through: :participants
   validates :name, length: { minimum: 5, maximum: 100 }
 
+  has_and_belongs_to_many :restaurants
 
   def participants
     Participant.where("email = ?", self.email)
