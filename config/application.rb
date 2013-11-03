@@ -22,10 +22,6 @@ module VpontisEmzhangTscizzleProj3
     # config.i18n.default_locale = :de
 
     # https
-    #config.force_ssl = true
-    # mail stuff
-    config.action_mailer.raise_delivery_errors = true
-    config.action_mailer.perform_deliveries = true
-    config.action_mailer.delivery_method = :smtp
+    config.force_ssl = true
   end
 end

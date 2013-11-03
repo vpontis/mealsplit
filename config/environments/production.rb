@@ -1,6 +1,11 @@
 VpontisEmzhangTscizzleProj3::Application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
+  config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.default :charset => "utf-8"
+  config.action_mailer.default_url_options = { host: 'mealsplit.herokuapp.com' }
   ActionMailer::Base.smtp_settings = {
     :address        => 'smtp.sendgrid.net',
     :port           => '587',
@@ -10,6 +15,7 @@ VpontisEmzhangTscizzleProj3::Application.configure do
     :domain         => 'heroku.com',
     :enable_starttls_auto => true
   }
+
   # Code is not reloaded between requests.
   config.cache_classes = true
 

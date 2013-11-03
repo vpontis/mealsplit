@@ -45,7 +45,6 @@ var setup_tip_buttons = function(){
       var new_total = new_tip + previous_total;
       $(total_field).text('$' + new_total.toFixed(2));
     });
-
   });
 };
 
