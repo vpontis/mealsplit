@@ -22,6 +22,6 @@ module VpontisEmzhangTscizzleProj3
     # config.i18n.default_locale = :de
 
     # https
-    config.force_ssl = true
+    # config.force_ssl = true
   end
 end
