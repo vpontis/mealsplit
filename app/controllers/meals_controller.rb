@@ -48,7 +48,7 @@ class MealsController < ApplicationController
       if !participant.payer
         send_payment_request(participant, @meal)
       elsif participant.payer
-        send_leader_summary(@meal)
+        send_payer_summary(@meal)
       end
     end
     redirect_to '/thank_you'
@@ -60,8 +60,8 @@ private
   end  
 
 private
-  def send_leader_summary(meal)
-    UserMailer.leader_summary_email(meal).deliver
+  def send_payer_summary(meal)
+    UserMailer.payer_summary_email(meal).deliver
   end
 
   def meal_complete
