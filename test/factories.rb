@@ -48,7 +48,8 @@ FactoryGirl.define do
    	factory :user do
    		id 1
    		name "Emily"
-   		email "test1@test.com"
+   		email "test2@test.com"
+
 
    	end
 end
