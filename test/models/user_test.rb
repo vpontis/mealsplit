@@ -53,14 +53,20 @@ class UserTest < ActiveSupport::TestCase
   def test_user_participant_for_meal
     restaurant = FactoryGirl.create(:restaurant)
     meal = FactoryGirl.create(:meal, restaurant: restaurant, id: 6)
-    participant = FactoryGirl.create(:participant, meal: meal, user_id: 5, meal_id: 6)
+    participant = FactoryGirl.create(:participant, meal: meal, email: "meow@meow.com", meal_id: 6, user_id: 5)
     user = FactoryGirl.create(:user, email: "meow@meow.com", password: "yosoyungato", id: 5)
-    puts user.participants,"0000000000"
-    puts participant.meal_id, " ", participant.user_id, " ", meal.id, " ",user.id
-    assert_equal "fds", user.user_participant_for_meal(meal)
+    assert_equal Participant.find_by(user_id: 5), user.user_participant_for_meal(meal)
 
   end
 
   def test_owes_how_much_for_meal
+    restaurant = FactoryGirl.create(:restaurant)
+    meal = FactoryGirl.create(:meal, restaurant: restaurant, id: 6)
+    food_item1 = FactoryGirl.build(:food_item, cost: 10.0,)
+    food_item2 = FactoryGirl.build(:food_item,  cost: 11.0,)
+    participant = FactoryGirl.create(:participant, meal: meal, email: "meow@meow.com", meal_id: 6, user_id: 5, food_items: [food_item1, food_item2])
+    user = FactoryGirl.create(:user, email: "meow@meow.com", password: "yosoyungato", id: 5)
+    assert_equal 26.145, user.owes_how_much_for_meal(meal)
+
   end 
 end

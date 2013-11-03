@@ -26,6 +26,8 @@ class Participant < ActiveRecord::Base
   end
 
   def participant_user
+    # once participants have user_id's this top line will work, for now use email
+    # User.find(self.user_id)
     User.find_by(email: self.email)
   end
 

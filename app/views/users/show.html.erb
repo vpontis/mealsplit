@@ -1,8 +1,14 @@
 <div class="col-md-offset-3 col-md-6 center">
   <h1>Profile for <%= current_user.name %></h1>
 
-  
-  
+  <hr>
+  <% current_user.meals.each do |meal| %>
+  <% if current_user.does_owe_for_meal(meal) %>
+  	You owe <%= current_user.user_to_owe_for_meal(meal).name %> <%= number_to_currency(current_user.owes_how_much_for_meal(meal)) %>
+  	<br>
+  <% end %>
+  <% end %>
+	<hr>
   <%= link_to "View Past Meals", meals_path %> <br />
   <%= link_to "Change Name", edit_user_path(current_user) %> <br />
   <%= link_to "Change Password", edit_user_password_path(current_user) %>

@@ -26,8 +26,7 @@ class User < ActiveRecord::Base
   end
 
   def user_participant_for_meal(meal)
-    #participant = user_participant_for_meal(meal)
-    self.participants.where("meal_id = ? AND user_id = ?", meal.id, self.id)
+    Participant.where("meal_id = ? AND email = ?", meal.id, self.email).first
   end
 
   def owes_how_much_for_meal(meal)

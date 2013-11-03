@@ -4,40 +4,7 @@
 <div class="row" >
   <div id="meal-summary" class="col-md-6 col-md-offset-3">
     <h1>Summary for meal at <%= @restaurant.name %></h1>
-
-    <% @meal.participants.each do |participant| %>
-      <div class="participant-details">
-        <div>
-          <span class="email">
-            <%= "Payer: " if participant.payer %>
-            <%= participant.email %>
-          </span> 
-          <%= link_to 'edit details', edit_meal_participant_path(@meal, participant) %>
-        </div>
-        <% participant.food_items.each do |item| %>
-          <div>
-            <span class="item"><%= item.name %></span>
-            <span class="cost"><%= item.cost_pretty %></span>
-          </div>
-        <% end %>
-        <hr />
-
-        <div class="subtotal">
-          <span class="item">Subtotal:</span> 
-          <span class="cost"><%= number_to_currency(participant.subtotal) %></span>
-        </div>
-        <div class="subtotal">
-          <span class="item">Tax: </span>
-          <span class="cost"><%= number_to_currency(participant.tax) %></span>
-        </div>
-
-        <hr />
-        <div class="total">
-          <span class="item">Total before tip:</span>
-          <span class="cost"><%= number_to_currency(participant.total) %></span>
-        </div>        
-      </div>
-    <% end %>
+    <%= render partial: 'meals/participant', collection: @meal.participants %>
   </div>
 </div>
 
@@ -48,13 +15,13 @@
         <%= label_tag(:tip_percent) %>
         <%= hidden_field :meal, :tip_percent, value: 0 %>
         <div id="tip-percent-input" class="btn-group">
-          <span class="btn btn-default active" data-value="0">0%</span>
+          <span class="btn btn-default" data-value="0">0%</span>
           <span class="btn btn-default" data-value=".10">10%</span>
-          <span class="btn btn-default" data-value=".15">15%</span>
+          <span class="btn btn-default active" data-value=".15">15%</span>
           <span class="btn btn-default" data-value=".20">20%</span>
         </div>
       </div>
-      <%= submit_tag("Send Payment Requests", class: "btn btn-primary") %>
+      <%= submit_tag("Send Payment Requests", class: "btn btn-success") %>
     <% end %>
   </div>
 </div>
