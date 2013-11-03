@@ -1,7 +1,13 @@
 <% if !food_item.id.nil? %>
   <div>
-    <%= food_item.name %> -- 
-    <%= number_to_currency food_item.cost %> --
-    <%= link_to "Remove item", "/restaurants/#{@restaurant.id}/destroy_food_item/#{food_item.id}", method: :delete, data: { confirm: "Are you sure you want to delete the item?" } %>
+    <span class='food-item-name'>
+      <%= food_item.name %> 
+    </span>
+    <span class='food-item-cost'>
+      <%= number_to_currency food_item.cost %> 
+    </span>
+    <% if @manage_restaurant_permission %>
+      <%= link_to "Remove item", "/restaurants/#{@restaurant.id}/destroy_food_item/#{food_item.id}", method: :delete, data: { confirm: "Are you sure you want to delete the item?" } %>
+    <% end %>
   </div>
 <% end %>

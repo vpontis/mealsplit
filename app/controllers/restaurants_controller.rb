@@ -1,7 +1,10 @@
 # primary author: Vic
 class RestaurantsController < ApplicationController
   # filter who can access a restaurant page
-  before_filter :get_restaurant,          only: [:show, :update, :destroy, :destroy_food_item]
+  before_filter :get_restaurant,                only: [:show, :update, :destroy, :destroy_food_item]
+  before_filter :user_has_permission,           only: [:update, :destroy, :destroy_food_item]
+  before_filter :check_admin,                   only: [:new, :create, :destroy]
+  before_filter :manage_restaurant_permission,  only: [:show, :update, :destroy_food_item]
 
   def new
     @restaurant = Restaurant.new
@@ -22,7 +25,7 @@ class RestaurantsController < ApplicationController
   end
 
   def index
-    @restaurants = Restaurant.all
+    @restaurants = Restaurant.all.order('name asc')
   end
 
   def show
@@ -30,6 +33,11 @@ class RestaurantsController < ApplicationController
   end
 
   def update
+    if !@manage_restaurant_permission
+      flash[:danger] = "Sorry you cannot add a food item to this restaurant"
+      redirect_to restaurant_path(@restaurant)
+      return
+    end
     @food_item = @restaurant.food_items.new(name: params[:food_item][:name], cost: params[:food_item][:cost])
     if @food_item.save
       redirect_to restaurant_path(@restaurant)
@@ -40,6 +48,11 @@ class RestaurantsController < ApplicationController
   end
 
   def destroy 
+    if !@manage_restaurant_permission
+      flash[:danger] = "Sorry you canont remove a food item from this restaurant"
+      redirect_to restaurant_path(@restaurant)
+      return
+    end
     if @restaurant.destroy
       flash[:success] = "Deleted #{@restaurant.name}"
     else
@@ -79,5 +92,35 @@ class RestaurantsController < ApplicationController
 private
   def get_restaurant
     @restaurant = Restaurant.find(params[:id])
+  end
+
+  def user_has_permission
+    if current_user.nil?
+      flash[:danger] = "Sorry you do not have permission to modify restaurants."
+      redirect_to restaurants_path
+      return
+    end
+
+    if @restaurant.users.find_by(id: current_user.id).nil?
+      flash[:danger] = "Sorry you do not have permission to modify this restaurant."
+      redirect_to restaurants_path
+      return
+    end
+  end
+
+  def check_admin
+    if current_user.nil? || !current_user.admin?
+      flash[:danger] = "Sorry you must be an admin to create restaurants."
+      redirect_to restaurants_path
+      return 
+    end
+  end
+
+  def manage_restaurant_permission
+    @manage_restaurant_permission = false
+    if !current_user.nil? && 
+      (!@restaurant.users.find_by(id: current_user.id).nil? || current_user.admin?)
+      @manage_restaurant_permission = true
+    end
   end
 end

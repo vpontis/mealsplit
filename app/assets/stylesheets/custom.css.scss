@@ -2,8 +2,9 @@
 // import original bootstrap
 @import "bootstrap";
 
+
 .food-item-name {
-  width: 200px;
+  min-width: 200px;
   display: inline-block;
 }
 
@@ -14,6 +15,17 @@
 
 .participant-email {
   min-width: 300px; 
+  display: inline-block;
+}
+
+
+.restaurant-name {
+  min-width: 150px;
+  display: inline-block;
+}
+
+.restaurant-city {
+  min-width: 100px;
   display: inline-block;
 }
 
