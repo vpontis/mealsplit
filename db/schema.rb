@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131103015952) do
+ActiveRecord::Schema.define(version: 20131103021404) do
 
   create_table "charges", force: true do |t|
     t.integer  "payer_id"
@@ -80,7 +80,6 @@ ActiveRecord::Schema.define(version: 20131103015952) do
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
     t.string   "unconfirmed_email"
-    t.boolean  "restaurant_user",        default: false
   end
 
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
