@@ -52,6 +52,9 @@ group :doc do
   gem 'sdoc', require: false
 end
 
+# I get errors when I try to use this, because of some nokogiri issues, but I think it's the easiest
+# gem 'roadie'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 

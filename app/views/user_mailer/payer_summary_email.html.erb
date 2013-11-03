@@ -1,0 +1,52 @@
+<!-- Let's use Roadie gem, then we can just use a style tag in the head of this file -->
+<!-- primary author: Ty -->
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+    <!-- This style tag gets dropped in email usually, but with the Roadie gem it gets converted to in-line css -->
+    <style type="text/css">
+
+    </style>
+  </head>
+  <body>
+    <h1>Thank you for using MealSplit!</h1>
+    <h3>Summary of your recent meal at <%= @meal.restaurant.name %>:</h3>
+
+    <% @meal.participants.each do |participant| %>
+      <%= participant.email %>
+      <% participant.food_items.each do |item| %>
+        <div>
+          <span class="item"><%= item.name %></span>
+          <span class="cost"><%= item.cost_pretty %></span>
+        </div>
+      <% end %>
+
+      <hr />
+
+      <div class="subtotal">
+        <span class="item">Subtotal:</span> 
+        <span class="cost"><%= number_to_currency(participant.subtotal) %></span>
+      </div>
+      <div class="subtotal">
+        <span class="item">Tax: </span>
+        <span class="cost"><%= number_to_currency(participant.tax) %></span>
+      </div>
+      <div class="subtotal">
+        <span class="item">Tip: </span>
+        <span class="cost"><%= number_to_currency(participant.tip) %></span>
+      </div>
+
+      <hr />
+      <div class="total">
+        <span class="item">Total:</span>
+        <span class="cost"><%= number_to_currency(participant.total + participant.tip) %></span>
+      </div>        
+
+      <br />
+      <br />
+
+    <% end %>
+    Yummy yummy!
+  </body>
+</html>
