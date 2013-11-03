@@ -4,12 +4,12 @@ class UserMailer < ActionMailer::Base
 
   def payment_request_email(participant, meal)
     @meal = meal
-    @meal_leader = @meal.payer.email
+    @meal_payer = @meal.payer.email
     @participant = participant
-    mail(to: participant.email, subject: "Payment Request from #{@meal_leader}")
+    mail(to: participant.email, subject: "Payment Request from #{@meal_payer}")
   end
 
-  def leader_summary_email(meal)
+  def payer_summary_email(meal)
     @meal = meal
     @email_address = @meal.payer.email
     mail(to: @email_address, subject: "Meal Summary from #{@meal.restaurant.name}")
