@@ -4,12 +4,12 @@
     <%= form_for(@restaurant, html: {role: 'form', class: 'form-group'}) do |f| %>
       <div class="form-group">
         <%= f.label :name %>
-        <%= f.text_field :restaurant, :name, class: 'form-control' %>
+        <%= f.text_field :name, class: 'form-control' %>
       </div>
 
       <div class="form-group">
         <%= f.label :city %>
-        <%= f.text_field :restaurant, :city, class: 'form-control' %>
+        <%= f.text_field :city, class: 'form-control' %>
       </div>
 
       <div class="form-group">
