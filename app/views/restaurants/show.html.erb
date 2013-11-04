@@ -10,12 +10,12 @@
       <h2>Add Food Item</h2>
       <%= form_for(@restaurant, html: {role: 'form', class: 'form-group'}) do %>
         <div class="form-group">
-          <%= label_tag :food_item, :name %>
+          <%= label_tag :name, 'Name' %>
           <%= text_field :food_item, :name, class: 'form-control' %>
         </div>
 
         <div class="form-group">
-          <%= label_tag :food_item, :cost %>
+          <%= label_tag :cost, "Cost (in dollars, no $)" %>
           <%= text_field :food_item, :cost, class: 'form-control' %>
         </div>
 
