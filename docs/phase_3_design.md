@@ -163,11 +163,25 @@ Design Challenges
   + Solution: Users can sign up and confirm their email address. They will be then linked to all participants that have the same email address. 
     + We wanted a user to be able to see all of the meals in which they were a participant. Forcing users to confirm their account ensures that the user is the owner of the email address that is associated with participants. This solution may hurt us if we decide later on that we want a restaurant to be able to view it’s past meals. At this point you have to have participated in a meal to view it. In the future we may need to change the code to allow for special users to view all of the meals at a given restaurant.
 
++ Who should be able to edit restaurants?
+  + Possible solutions
+    + A separate class of `restaurant users` that are distinct from users who split a meal
+      + Pros
+        + These restaurant users can be handled differently than regular users
+      + Cons
+        + Restaurant users would not be able to create meals
+        + There would be two different workflows and two different apps
+    + Any user can be granted access to add/delete food items for a specific restaurant
+      + Pros
+        + Users can both create meals and get permissions for restaurants
+      + Cons
+        + A restaurant user who does not want to create meals, still faces essentially the same UI
+  + Solution: Regular users can both create meals. This allows a waiter to both modify menu items and create meals for diners. This allows us to have more options in the future when restaurants could be more heavily using the app. 
 
 Future of MealSplit
 -------------------
 
-### Restaurants
+##Restaurants
 
 + Restaurant admin status
 	+ Currently, restuarant information (menu items, costs, etc.) must be manually manipulated by us through the console. There is no way for a user to sign up as an administrator of a restaurant. In the future MealSplit could allow for this admin status, so that restaurant owners could modify menus by adding items, removing items, updating prices, etc.
@@ -178,7 +192,7 @@ Future of MealSplit
 + Source of restaurant information
 	+ Our restaurant information in the database is currently filled with some information we gathered, but it is limited and not official (administered by the restaurants themselves). The database could be populated by already existing technologies like Locu that have menus available to the public, and are more official and efficient than non-restaurant-owners manually inputting data.
 
-### Meals
+## Meals
 
 + Payment methods
 	+ MealSplit currently looks up costs, organizes division of check, calculates totals, tax, and tip, but the actual payment is still left up to the users. A positive to this is that it allows for freedom to choose how and when to pay for the non-payer participants, but an issue is that it does not help with convenience, which is very much the theme of the app. One possibility is to integrate the app with already existing technologies that deal with payment between friends, like Venmo. This would be consistent with the theme of easing the group meal payment process and is a natural next step.
