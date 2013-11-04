@@ -4,37 +4,6 @@
 <html>
   <head>
     <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
-    <style type="text/css">
-      .center {
-        text-align: center;
-      }
-
-      /* meal summary page */
-      #meal-summary {
-        padding: 10px;
-
-        .participant-details {
-          padding: 10px;
-          margin: 10px;
-          hr {
-            margin: 2px;
-          }
-          .email {
-            font-size: 150%;
-          }
-        }
-
-        .item {
-          width: 200px;
-          display: inline-block; 
-        }
-
-        .cost {
-          width: 60px;
-          display: inline-block;
-        }
-      }
-    </style>
   </head>
   <body>
     <h1>Thank you for using MealSplit!</h1>
@@ -52,15 +21,15 @@
 
     <div class="subtotal">
       <span class="item">Subtotal:</span> 
-      <span class="cost"><%= number_to_currency(@participant.subtotal) %></span>
+      <span class="cost"><%= number_to_currency(participant.subtotal) %></span>
     </div>
     <div class="subtotal">
       <span class="item">Tax: </span>
-      <span class="cost"><%= number_to_currency(@participant.tax) %></span>
+      <span class="cost"><%= number_to_currency(participant.tax) %></span>
     </div>
-    <div class="subtotal">
+    <div class="tip">
       <span class="item">Tip: </span>
-      <span class="cost"><%= number_to_currency(@participant.tip) %></span>
+      <span class="cost tip-value" data-participant-id="<%= participant.id %>" data-subtotal="<%= participant.subtotal %>"><%= number_to_currency(participant.tip) %></span>
     </div>
 
     <hr />
