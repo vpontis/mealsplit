@@ -19,7 +19,7 @@ class MealTest < ActiveSupport::TestCase
 
   def test_unprocessed_participants
   	restaurant = FactoryGirl.create(:restaurant)
-  	food_items = FactoryGirl.create(:food_item)
+  	food_items = FactoryGirl.create(:food_item, name: "YumDelicious")
   	meal = FactoryGirl.create(:meal, restaurant: restaurant)
   	participant1 = FactoryGirl.build(:participant_with_food_items, meal: meal, food_items: [])
   	participant2 = FactoryGirl.build(:participant_with_food_items, meal: meal, food_items: [])

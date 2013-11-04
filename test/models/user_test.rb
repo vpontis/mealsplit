@@ -7,7 +7,7 @@ class UserTest < ActiveSupport::TestCase
   # end
   def test_user_must_have_name
     user = User.new
-    assert_equal false, user.save,
+    assert_equal false, user.save
   end
 
   def test_user_must_have_name_length
