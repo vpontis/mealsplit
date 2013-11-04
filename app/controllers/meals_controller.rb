@@ -83,8 +83,13 @@ private
   def can_view_meal
     if session[:meal_id] == params[:id].to_i
       return
-    elsif !current_user.nil? && !current_user.meals.find_by(id: params[:meal_id]).nil?
-      return
+    end
+    if !current_user.nil? 
+      current_user.meals.each do |meal|
+        if meal.id == params[:id].to_i
+          return
+        end
+      end
     end
     flash[:danger] = 'Sorry you cannot view this meal.'
     redirect_to root_path
