@@ -62,7 +62,7 @@ class RestaurantsController < ApplicationController
   end
 
   def restaurant_suggestions
-    @suggestions = Restaurant.select(:name) or Restaurant.find(:all)
+    @suggestions = Restaurant.all
     @suggestions.map! { |s| s.name.gsub("'", "") }
     render json: @suggestions
   end
