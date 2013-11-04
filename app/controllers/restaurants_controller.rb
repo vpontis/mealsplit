@@ -16,6 +16,7 @@ class RestaurantsController < ApplicationController
         city: params[:restaurant][:city]
       )
     if @restaurant.save
+      # in this app we sometimes include variables in flashes, thus flashes need to be sanitized before they are rendered
       flash[:success] = "We have created #{@restaurant.name}"
       redirect_to restaurants_path
     else
