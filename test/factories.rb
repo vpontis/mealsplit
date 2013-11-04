@@ -32,11 +32,6 @@ FactoryGirl.define do
        	restaurant_id 1
        	payer_id 1
        	tip_percent 0.18
-       	
-       	#factory :meal_with_participants do
-       	#	after_create do |participant|
-       	#	create(:meal, participant: participant)
-       	#end
     end
 
     factory :food_item do
@@ -49,7 +44,5 @@ FactoryGirl.define do
    		id 1
    		name "Emily"
    		email "test2@test.com"
-
-
    	end
 end
