@@ -5,7 +5,10 @@ class MealTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end
-
+  def test_meal_must_have_restaurant
+    meal = Meal.new
+    assert_equal false, meal.save
+  end
 
   def test_next_participant
   	restaurant = FactoryGirl.create(:restaurant)

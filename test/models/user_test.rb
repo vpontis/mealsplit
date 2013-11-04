@@ -5,6 +5,23 @@ class UserTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end
+  def test_user_must_have_name
+    user = User.new
+    assert_equal false, user.save,
+  end
+
+  def test_user_must_have_name_length
+    user = User.new
+    user.name = 'short'
+    assert_equal false, user.save
+  end
+  
+   def test_user_must_have_name2
+    user = User.new
+    user.name = 'Way Longer'
+    assert_equal true, user.save
+  end
+
   def test_participants
     participant = FactoryGirl.create(:participant, email: "victor@me.com", name: "Victor")
     user = FactoryGirl.build(:user, name: "Victor", email: "victor@me.com", password: "fdsafdsa")
@@ -24,7 +41,14 @@ class UserTest < ActiveSupport::TestCase
     user = FactoryGirl.build(:user, name: "Victor", email: "victor@me.com", password: "fdsafdsa")
     assert_equal meal1, user.meals[0]
   end
+  def test_owes1
+    restaurant = FactoryGirl.create(:restaurant)
+    meal1 = FactoryGirl.create(:meal, restaurant: restaurant)
+    participant = FactoryGirl.create(:participant, email: "victor@me.com", name: "Victor", meal: meal1)
+    user = FactoryGirl.build(:user, name: "Victor", email: "victor@me.com", password: "fdsafdsa")
+    assert_equal meal1, user.meals[0]
 
+  end
   '''
   def test_does_owe_for_meal1
     restaurant = FactoryGirl.create(:restaurant)
