@@ -21,15 +21,15 @@
 
     <div class="subtotal">
       <span class="item">Subtotal:</span> 
-      <span class="cost"><%= number_to_currency(participant.subtotal) %></span>
+      <span class="cost"><%= number_to_currency(@participant.subtotal) %></span>
     </div>
     <div class="subtotal">
       <span class="item">Tax: </span>
-      <span class="cost"><%= number_to_currency(participant.tax) %></span>
+      <span class="cost"><%= number_to_currency(@participant.tax) %></span>
     </div>
-    <div class="tip">
+    <div class="subtotal">
       <span class="item">Tip: </span>
-      <span class="cost tip-value" data-participant-id="<%= participant.id %>" data-subtotal="<%= participant.subtotal %>"><%= number_to_currency(participant.tip) %></span>
+      <span class="cost"><%= number_to_currency(@participant.tip) %></span>
     </div>
 
     <hr />
