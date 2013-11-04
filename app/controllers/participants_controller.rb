@@ -3,6 +3,7 @@ class ParticipantsController < ApplicationController
   before_filter :get_meal_and_participant, only: [:edit, :update, :destroy, :destroy_food_item, :create]
   before_filter :get_meal,                 only: [:index]
   before_filter :meal_valid,               only: [:edit, :update, :destroy, :destroy_food_item]
+  before_filter :can_view_meal
 
   def new
   end
@@ -95,5 +96,20 @@ private
       flash[:danger] = 'The meal must have at least two participants. You can\'t share with yourself'
       redirect_to meal_participants_path(@meal)
     end
+  end
+
+  def can_view_meal
+    if session[:meal_id] == params[:meal_id].to_i
+      return
+    end
+    if !current_user.nil? 
+      current_user.meals.each do |meal|
+        if meal.id == params[:meal_id].to_i
+          return
+        end
+      end
+    end
+    flash[:danger] = 'Sorry you cannot view this meal.'
+    redirect_to root_path
   end
 end
