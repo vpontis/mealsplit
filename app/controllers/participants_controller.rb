@@ -16,6 +16,8 @@ class ParticipantsController < ApplicationController
   def update
     @food_item = @restaurant.food_items.find_by(name: params[:new_food_item])
     if @food_item.nil?
+      # here we are taking user input and inserting it into the flash, thus the flash needs to be sanitized before displayed
+      # this happens automatically with rails and should not be disabled
       flash[:danger] = "Sorry we were not able to find the food item #{params[:new_food_item]} at the restaurant."
     else
       @participant.food_items << @food_item
