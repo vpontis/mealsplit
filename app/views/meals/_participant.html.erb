@@ -1,7 +1,11 @@
 <div class="participant-details">
   <div>
     <span class="email">
-      <span class="btn btn-primary payer-button" onclick="payer_chosen(this);" data-email="<%= participant.email %>">I paid!</span>
+      <% if participant.id == @meal.payer_id %>
+        <span class="btn btn-primary payer-button" onclick="payer_chosen(this);" data-email="<%= participant.email %>" disabled="disabled">Payer!</span>
+      <% else %>
+        <span class="btn btn-primary payer-button" onclick="payer_chosen(this);" data-email="<%= participant.email %>">I paid!</span>
+      <% end %>
       <%= "#{participant.name} --" unless participant.name.nil? %>
       <%= participant.email %>
     </span> 
