@@ -27,7 +27,11 @@ class User < ActiveRecord::Base
       owe_object = {}
       owe_object['total'] = participant.total
       owe_object['restaurant'] = meal.restaurant.name
-      owe_object['payer'] = meal.payer.email
+      if meal.payer_id.nil?
+        owe_object['payer'] = 'Could not find participant info.'
+      else
+        owe_object['payer'] = Participant.find_by(id: meal.payer_id).email
+      end
       owes_list << owe_object
     end
     owes_list
