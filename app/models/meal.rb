@@ -29,7 +29,7 @@ class Meal < ActiveRecord::Base
   end
 
   def payer
-    return nil unless self.payer_id != nil
+    return nil if self.payer_id == nil
     meal_payer = self.participants.find_by(id: self.payer_id)
     if meal_payer == nil
       self.payer_id = nil

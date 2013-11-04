@@ -20,7 +20,11 @@ class User < ActiveRecord::Base
   def owes 
     owes_list = []
     self.meals.each do |meal|
-      if meal.payer == self
+      if meal.payer.nil?
+        next
+      end
+      
+      if meal.payer.email == self.email
         next
       end
       participant = meal.participants.find_by(email: self.email)
