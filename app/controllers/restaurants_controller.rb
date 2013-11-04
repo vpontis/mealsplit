@@ -102,7 +102,7 @@ private
       return
     end
 
-    if @restaurant.users.find_by(id: current_user.id).nil?
+    if @restaurant.users.find_by(id: current_user.id).nil? && !current_user.admin?
       flash[:danger] = "Sorry you do not have permission to modify this restaurant."
       redirect_to restaurants_path
       return
