@@ -12,13 +12,17 @@ class UserTest < ActiveSupport::TestCase
 
   def test_user_must_have_name_length
     user = User.new
-    user.name = 'short'
+    user.name = 'shor'
+    user.email = 'test@test.com'
+    user.password = 'mealsmeals'
     assert_equal false, user.save
   end
   
-   def test_user_must_have_name2
+  def test_user_must_have_name2
     user = User.new
     user.name = 'Way Longer'
+    user.email = 'test@test.com'
+    user.password = 'mealsmeals'
     assert_equal true, user.save
   end
 
