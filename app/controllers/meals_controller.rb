@@ -40,16 +40,21 @@ class MealsController < ApplicationController
       redirect_to meal_path(@meal)
       return
     else
-      @meal.payer = payer
+      @meal.payer= payer
       payer.payer = true
+      payer.save
     end
 
     @meal.tip_percent = params[:meal][:tip_percent].to_f
     @meal.save
+
     @meal.participants.each do |participant|
-      if !participant.payer
+      logger.debug 'hellooooooooooo'
+      logger.debug participant.payer
+      logger.debug participant.email
+      if participant.id != @meal.payer_id
         send_payment_request(participant, @meal)
-      elsif participant.payer
+      else
         send_payer_summary(@meal)
       end
     end

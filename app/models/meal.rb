@@ -15,14 +15,17 @@ class Meal < ActiveRecord::Base
 
   def payer=(payer)
     self.payer_id = payer.id
-    self.save
 
     self.participants.each do |par|
-      par.payer = false
-      par.save
+      if par.id != payer.id
+        par.payer = false
+        par.save
+      end
     end
     payer.payer = true
     payer.save
+
+    self.save
   end
 
   def payer
@@ -30,6 +33,7 @@ class Meal < ActiveRecord::Base
     meal_payer = self.participants.find_by(id: self.payer_id)
     if meal_payer == nil
       self.payer_id = nil
+      self.save
     else
       meal_payer
     end
